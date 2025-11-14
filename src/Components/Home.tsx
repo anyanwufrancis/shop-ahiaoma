@@ -492,7 +492,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 
-import { IoArrowForward, IoCheckmarkSharp } from "react-icons/io5";
+import { IoCheckmarkSharp } from "react-icons/io5";
 import { motion } from "framer-motion";
 import { FaStar, FaQuoteLeft } from "react-icons/fa6";
 import { keyframes } from "@emotion/react";

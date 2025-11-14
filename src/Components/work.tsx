@@ -95,8 +95,7 @@ export const Work = () => {
                 Join Waitlist
               </Button>
             </Flex>
-      <Box
-            bg="linear-gradient(to top right, #eeeeeeff, #ffffff)"
+      <Box bg="linear-gradient(to top right, #eeeeeeff, #ffffff)"
 
         mb={"2em"} py={"0.5em"}>
       <Box display="block" textAlign="center" height="15vh" position="relative">
@@ -129,9 +128,7 @@ export const Work = () => {
         {/* Floating Animated Ellipses */}
         <MotionBox position="absolute" left="10%" top="65%">
           <MotionIcon
-            as={IoEllipseSharp}
             color={"rgb(70, 116, 161)"}
-            boxSize={6}
             animate={{ y: [0, -15, 0] }}
             transition={{
               duration: 2,
@@ -143,7 +140,7 @@ export const Work = () => {
 
         <MotionBox  position="absolute" right="15%" bottom="60%">
           <MotionIcon
-            as={IoEllipseSharp}
+         
             color="aqua"
           //  width={"70em"}
             animate={{ y: [0, -20, 0] }}
@@ -157,7 +154,7 @@ export const Work = () => {
 
         <MotionBox position="absolute" left="5%" top="10%">
           <MotionIcon
-            as={IoEllipseSharp}
+          
             color="lightgreen"
             animate={{ y: [0, -15, 0] }}
             transition={{
