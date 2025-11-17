@@ -9,12 +9,19 @@ import {
   ListItem,
   ListIcon,
   Grid,
+  Image,
+  Card,
+  HStack,
+  Icon,
+  Button,
+  Link,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { IoEllipseSharp, IoRocketSharp } from "react-icons/io5";
-import { MdCheckCircle } from "react-icons/md";
+import { MdCheckCircle, MdOutlineEmail } from "react-icons/md";
 import { RiCheckboxBlankCircleFill } from "react-icons/ri";
 import { BsFillStarFill } from "react-icons/bs";
+import { FaPhone } from "react-icons/fa6";
 
 const About = () => {
   const MotionBox = motion(Box);
@@ -23,8 +30,77 @@ const About = () => {
   return (
     <>
       {/* ABOUT HEADER WITH ROCKET AND FLOATING ICONS */}
+       {/* Header Section */}
+              {/* Header Navigation */}
+                  <Flex
+                    alignItems="center"
+                    justifyContent="space-between"
+                    p={4}
+                    bg="white"
+                    boxShadow="md"
+                    borderRadius="md"
+                  >
+                    {/* Logo */}
+                    <Flex align="center" gap={2} w="9em" color="green.600">
+                      <Image src="ahiaoma_text_logo.png" alt="Logo" />
+                    </Flex>
+            
+             <Flex gap={6} display={{ base: "none", md: "flex" }}>
+              {/* Features Link */}
+              <Link href="/">
+                <Text
+                  _hover={{ color: "green.500" }}
+                  fontWeight="semibold"
+                  color="gray.700"
+                  cursor="pointer"
+                >
+                  Home
+                </Text>
+              </Link>
+            
+            
+              {/* About Us Link */}
+              <Link href="/about">
+                <Text
+                  _hover={{ color: "green.500" }}
+                  fontWeight="semibold"
+                  color="gray.700"
+                  cursor="pointer"
+                >
+                   Features
+                </Text>
+              </Link>
+            
+              {/* Contact Us Link */}
+              <Link href="/contact">
+                <Text
+                  _hover={{ color: "green.500" }}
+                  fontWeight="semibold"
+                  color="gray.700"
+                  cursor="pointer"
+                >
+                  Contact
+                </Text>
+              </Link>
+            </Flex>
+            
+            
+            
+                    {/* Join Waitlist Button */}
+                    <Button
+                      bg="green.600"
+                      rounded="full"
+                      px={4}
+                      py={2}
+                      color="white"
+                      _hover={{ bg: "green.700" }}
+                      display={{ base: "none", md: "block" }}
+                    >
+                      Join Waitlist
+                    </Button>
+                  </Flex>
       <Box
-        bg="linear-gradient(to top right, #eeeeeeff, #ffffff)"
+        bg="linear-gradient(to right bottom, #52e20ed8, #ffffff)"
         mb="7em"
         py="0.5em"
       >
@@ -312,6 +388,290 @@ Building momentum across Nigeria's agricultural ecosystem        </Text>
           ))}
         </Grid>
       </Box>
+      <Box textAlign={"center"}>
+        <Heading>Meet Our Team</Heading>
+        <Text>The Visionaries building the future of Nigerian commerce</Text>
+      </Box>
+
+<Grid
+  templateColumns="repeat(auto-fit, minmax(18em, 1fr))"
+  gap="20px"
+>
+  {/* Card 1 with left margin to shift from the edge */}
+  <Box
+    // Removed hover scale effect
+    _hover={{ boxShadow: "xl" }}
+    transition="all 0.3s ease"
+    textAlign="center"
+    ml="7em" // Add this line to shift from the left edge
+  >
+    <Box
+      width="25em"
+      height="15em"
+      p="1em"
+      bg="whitesmoke"
+      shadow="md"
+      alignContent={"center"}
+      rounded="md"
+    >
+      <Box width="5em" border={"4px solid white"} height="5em" overflow="hidden" borderRadius="50%" mx="auto">
+        <Image src="FlorenceSydney.jpeg" boxSize="100%" objectFit="cover" />
+      </Box>
+      <Heading fontSize="xl" mt="1em" mb="0.5em" textAlign="center">
+        Florence Sydney
+      </Heading>
+      <Text color="green.500" fontWeight="bold" fontSize={"lg"} textAlign="center">
+        CEO / Founder
+      </Text>
+      <Text fontSize="md" color="gray.500" textAlign="center">
+        6+ years in Marketing
+      </Text>
+    </Box>
+  </Box>
+
+  {/* Card 2 */}
+  <Box
+    // Removed hover scale effect
+    _hover={{ boxShadow: "xl" }}
+    transition="all 0.3s ease"
+    textAlign="center"
+       ml="4em"
+  >
+    <Box
+      width="25em"
+      height="15em"
+      p="1em"
+      bg="whitesmoke"
+      shadow="lg"
+   
+      rounded="md"
+    >
+      <Box width="5em" border={"4px solid white"} height="5em" overflow="hidden" borderRadius="50%" mx="auto">
+        <Image src="headshot_ephraim.jpeg" boxSize="100%" objectFit="cover" />
+      </Box>
+      <Heading fontSize="xl" mt="1em" mb="0.5em" textAlign="center">
+        Ephraim Umunnakwe
+      </Heading>
+      <Text color="green.500" fontWeight="bold" fontSize={"lg"} textAlign="center">
+        CTO / Co-Founder
+      </Text>
+      <Text fontSize="md" color="gray.500" textAlign="center">
+        8+ years in Software Engineering
+      </Text>
+    </Box>
+  </Box>
+
+  {/* Card 3 */}
+  <Box
+    // Removed hover scale effect
+    _hover={{ boxShadow: "xl" }}
+    transition="all 0.3s ease"
+    textAlign="center"
+    ml="1em"
+  >
+    <Box
+      width="25em"
+      height="15em"
+      p="1em"
+      bg="whitesmoke"
+      shadow="md"
+      rounded="md"
+    >
+      <Box width="5em" border={"4px solid white"} height="5em" overflow="hidden" borderRadius="50%" mx="auto">
+        <Image src="RuthSolomon.jpeg" boxSize="100%" objectFit="cover" />
+      </Box>
+      <Heading fontSize="xl" mt="1em" mb="0.5em" textAlign="center">
+        Ruth Solomon
+      </Heading>
+      <Text color="green.500" fontWeight="bold" fontSize={"lg"} textAlign="center">
+        Head of Logistics & Partnerships
+      </Text>
+      <Text fontSize="md" color="gray.500" textAlign="center">
+        7 years of experience in marketing and sales of FMCG
+      </Text>
+    </Box>
+  </Box>
+
+  {/* Last Card spanning full width and centered content */}
+  <Box
+    gridColumn="1 / 1"
+    // Removed hover scale effect
+    _hover={{ boxShadow: "xl" }}
+    transition="all 1s ease"
+    textAlign="center"
+    mt="-0.9em"
+    ml={"6.9em"}
+    mb={"2em"}
+  >
+    <Box
+      width="25em"
+      height="15em"
+      p="1em"
+      bg="whitesmoke"
+      shadow="lg"
+      rounded="md"
+      mx="auto"
+    >
+      <Box width="5em" border={"4px solid white"} height="5em" overflow="hidden" borderRadius="50%" mx="auto">
+        <Image src="WilcoxEjima.jpeg" boxSize="100%" objectFit="cover" />
+      </Box>
+      <Heading  fontSize="xl" mt="1em" mb="0.5em">
+        Wilcox Egima
+      </Heading>
+      <Text color="green.500" fontWeight="bold" fontSize={"lg"} mb="0.5em">
+        Chief Agricultural Officer
+      </Text>
+      <Text fontSize="md" color="gray.500">
+        5+ years of Experience
+      </Text>
+    </Box>
+  </Box>
+</Grid>
+<Box
+  bg="#02A150"
+  color="white"
+  py={{ base: 10, md: 20 }}
+  px={{ base: 5, md: 20 }}
+>
+  {/* OUR VISION */}
+  <Box maxW="800px">
+    <Heading fontSize={{ base: "2xl", md: "3xl" }} mb={4}>
+      Our Vision
+    </Heading>
+
+    <Text fontSize={{ base: "md", md: "lg" }} lineHeight="1.8">
+      To become Nigeria's leading digital food marketplace; Connecting
+      sellers and buyers, ensuring fair pricing, reducing waste, and
+      delivering fresh, quality food efficiently.
+    </Text>
+  </Box>
+
+  {/* COMPETITIVE ADVANTAGE BOX */}
+  <Box
+    bg="rgba(255,255,255,0.15)"
+    backdropFilter="blur(6px)"
+    borderRadius="lg"
+    p={{ base: 5, md: 10 }}
+    mt={10}
+    maxW="900px"
+  >
+    <Heading fontSize="xl" mb={3}>
+      Competitive Advantage
+    </Heading>
+
+    <Text mb={5}>
+      Ahiaoma takes an integrated approach, combining:
+    </Text>
+    <List>
+    {/* FLEX LIST (Now working correctly) */}
+    <Flex
+      direction={{ base: "column", md: "row" }}
+      gap={{ base: 4, md: 10 }}
+      align="flex-start"
+    >
+      {/* Item 1 */}
+      <Flex align="center">
+        <ListIcon as={IoEllipseSharp} color="white" boxSize={3} />
+        <Text ml={2}>A digital Marketplace</Text>
+      </Flex>
+
+      {/* Item 2 */}
+      <Flex align="center">
+        <ListIcon as={IoEllipseSharp} color="white" boxSize={3} />
+        <Text ml={2}>Logistics solutions</Text>
+      </Flex>
+
+      {/* Item 3 */}
+      <Flex align="center">
+        <ListIcon as={IoEllipseSharp} color="white" boxSize={3} />
+        <Text ml={2}>Preservation infrastructure</Text>
+      </Flex>
+    </Flex>
+</List>
+
+    <Text mt={6} fontSize="sm" opacity={0.9}>
+      This holistic model enables us to solve supply chain challenges
+      end-to-end.
+    </Text>
+  </Box>
+</Box>
+ {/* Footer */}
+            <Box bg="#000" color={"gray.300"} p={8} fontFamily="Arial, sans-serif">
+              <Flex justify="space-between" gap={"3em"} flexWrap="wrap" maxW="1200px" mx="auto">
+                {/* About Section */}
+                <Box flex="1" minW="200px" mb={4}>
+                  <Text fontWeight="bold" fontSize="xl" color="#00C853">
+                    Ahiaoma
+                  </Text>
+                  <Text mt={2}  fontSize="xl" w={"29em"}>
+                    Nigeria's premier marketplace connecting millions of buyers and
+                    sellers. Shop with confidence, sell with ease.
+                  </Text>
+                  <Flex mt={4} gap={3}>
+                    <Box bg="#3b5998" borderRadius="50%" p={2}>
+                      <Image src="facebook.svg" boxSize="40px" borderRadius="50%" />
+                    </Box>
+                    <Box bg="#E1306C" borderRadius="50%" p={2}>
+                      <Image src="instagram.svg" boxSize="40px" borderRadius="50%" />
+                    </Box>
+                    <Box bg="#1DA1F2" borderRadius="50%" p={2}>
+                      <Image src="x_icon_twitter.svg" boxSize="40px" borderRadius="50%" />
+                    </Box>
+                  </Flex>
+                </Box>
+      
+                {/* Quick Links */}
+                <Box minW="200px" mb={4}>
+                  <Text fontWeight="bold" color={"white"} fontSize="lg" mb={4}>
+                    Quick Links
+                  </Text>
+                  <VStack align="start" gap={2}>
+                    <Text cursor="pointer" fontSize="sm">
+                      About Us
+                    </Text>
+                    <Text cursor="pointer" fontSize="sm">
+                      How It Works
+                    </Text>
+                    <Text cursor="pointer" fontSize="sm">
+                      Seller Center
+                    </Text>
+                    <Text cursor="pointer" fontSize="sm">
+                      Help Center
+                    </Text>
+                  </VStack>
+                </Box>
+      
+                {/* Contact */}
+                <Box  minW="200px" mb={4}>
+                  <Text fontWeight="bold" color={"white"} fontSize="lg" mb={4}>
+                    Contact
+                  </Text>
+                  <VStack align="start" gap={2}>
+                    <HStack align="center" gap={2}>
+                      <Box bg="#4CAF50" p={2} borderRadius="md">
+                        <Icon as={MdOutlineEmail} color="#fff" boxSize={4} />
+                      </Box>
+                      <Text fontSize="sm">ahiaoma37@gmail.com</Text>
+                    </HStack>
+                    <HStack align="center" gap={2}>
+                      <Box bg="#2196F3" p={2} borderRadius="md">
+                        <Icon as={FaPhone} color="#fff" boxSize={4} />
+                      </Box>
+                      <Text fontSize="sm">+234 907 940 5147</Text>
+                    </HStack>
+                  </VStack>
+                </Box>
+              </Flex>
+              <Box border={"1px"} ml={"3em"} w={"75em"} borderColor={" grey"}  h={"-0.1em"} />
+              <Flex fontSize={"xs"} gap={"2em"} mt={"1em"}>
+              <Text ml={"3.5em"} fontSize="sm">
+                © 2025 Ahiaoma. All rights reserved.
+              </Text>
+              <Text ml={"55em"}>Privacy Policy</Text>
+              <Text>Terms of Policy</Text>
+              <Text>Cookies and Policy</Text>
+            </Flex>
+            </Box>
 
     </>
   );
