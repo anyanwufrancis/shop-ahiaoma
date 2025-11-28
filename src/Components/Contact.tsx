@@ -1,95 +1,10 @@
-// import { Image, Flex, Box, Heading, Text, Input, FormControl, FormLabel, Stack, HStack, Button, Textarea } from "@chakra-ui/react"
-
-// const Contact = () => {
-//   return (
-//     <Flex
-//       direction={{ base: "column", md: "row" }}
-//       justifyContent="center"
-//       alignItems="flex-start"
-//       p={4}
-//     >
-//       {/* Form Container */}
-//       <Box w={{ base: "100%", md: "480px" }} mt={{ base: "1em", md: 0 }} h={{ base: "auto", md: "664px" }} mr={{ md: "2em" }}>
-//         <Box mb={4}>
-//           <Heading size="lg">Get in touch</Heading>
-//         </Box>
-//         <Box mb={8}>
-//           <Text color="rgba(102, 112, 133, 1)">
-//             Our friendly team would love to hear from you
-//           </Text>
-//         </Box>
-//         <Stack spacing={4} align="stretch">
-//           {/* First Name and Last Name side by side on larger screens, stacked on mobile */}
-//           <HStack spacing={4} flexWrap="wrap" justify="space-between" flexDir={{ base: "column", md: "row" }}>
-//             <FormControl id="firstName" flex={1}>
-//               <FormLabel>First Name</FormLabel>
-//               <Input placeholder="First name" height="44px" />
-//             </FormControl>
-//             <FormControl id="lastName" flex={1}>
-//               <FormLabel>Last Name</FormLabel>
-//               <Input placeholder="Last name" height="44px" />
-//             </FormControl>
-//           </HStack>
-
-//           {/* Email */}
-//           <FormControl id="email">
-//             <FormLabel>Email</FormLabel>
-//             <Input placeholder="you@company.com" height="44px" />
-//           </FormControl>
-
-//           {/* Phone number */}
-//           <FormControl id="phone">
-//             <FormLabel>Phone Number</FormLabel>
-//             <Input placeholder="NGN +234-000-0000" height="44px" />
-//           </FormControl>
-
-//           {/* Message textarea */}
-//           <FormControl id="message">
-//             <FormLabel>Message</FormLabel>
-//             <Textarea placeholder="Leave us a message..." rows={4} height="134px" resize="none" />
-//           </FormControl>
-
-//           {/* Send message button */}
-//           <Button
-//             colorScheme="blue"
-//             size="lg"
-//             width="100%"
-//             height="48px"
-//             mt={4}
-//           >
-//             Send message
-//           </Button>
-//         </Stack>
-//       </Box>
-
-//       {/* Image Container (hidden on mobile) */}
-//       <Box
-//         w={{ base: "100%", md: "576px" }}
-//         mt={{ base: "2em", md: 0 }}
-//         display={{ base: "none", md: "block" }}
-//       >
-//         <Image src={"src/assets/Card (1).png"} w="100%" h="45em" objectFit="contain" />
-//       </Box>
-//     </Flex>
-//   );
-// }
-
-// export default Contact;
-
 import {
   Box,
   Text,
   Flex,
   Heading,
   VStack,
-  List,
-  ListItem,
-  ListIcon,
-  Grid,
-  Image,
-  Card,
-  HStack,
-  Icon,
+  Link,
   Input,
   Button,
   FormControl,
@@ -97,13 +12,15 @@ import {
   Stack,
   Textarea,
   useToast,
-  Link,
+  Image,
+  // HStack,
+  // Icon,
 } from "@chakra-ui/react";
 import { MdEmail } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
-import { LuAsterisk } from "react-icons/lu";
 import { FaPhoneAlt } from "react-icons/fa";
 import { useRef, useState } from "react";
+
 
 const Contact = () => {
   const toast = useToast();
@@ -133,8 +50,6 @@ const Contact = () => {
         duration: 3000,
         isClosable: true,
       });
-
-      // Scroll to first name
       (firstNameRef.current as unknown as HTMLInputElement)?.focus();
       return;
     }
@@ -146,182 +61,243 @@ const Contact = () => {
       duration: 4000,
       isClosable: true,
     });
-
-    // You could integrate mailto: or API submission here
+    // Implement email API or mailto: link here if needed
   };
 
   return (
-    <>
-      {/* Header Section */}
-      {/* Header Navigation */}
+    // Outer container to prevent overflow
+    <Box overflowX="hidden" width="100%">
+      {/* Responsive Header */}
       <Flex
-        alignItems="center"
-        justifyContent="space-between"
+        align="center"
+        justify="space-between"
         p={4}
         bg="white"
         boxShadow="md"
         borderRadius="md"
+        direction={{ base: "column", md: "row" }}
+        maxW="1200px"
+        mx="auto"
+        width="100%"
       >
         {/* Logo */}
-        <Flex align="center" gap={2} w="9em" color="green.600">
-          <Image src="ahiaoma_text_logo.png" alt="Logo" />
+        <Flex
+          align="center"
+          gap={2}
+          w={{ base: "100%", md: "auto" }}
+          color="green.600"
+          mb={{ base: 2, md: 0 }}
+        >
+          <Image src="ahiaoma_text_logo.png" alt="Logo" maxW="150px" />
         </Flex>
 
-        <Flex gap={6} display={{ base: "none", md: "flex" }}>
-          {/* Features Link */}
+        {/* Navigation Links */}
+        <Flex
+          gap={6}
+          display={{ base: "none", md: "flex" }}
+          justify="center"
+          w="full"
+        >
           <Link href="/">
             <Text
               _hover={{ color: "green.500" }}
               fontWeight="semibold"
-              color="gray.700"
               cursor="pointer"
             >
               Home
             </Text>
           </Link>
-
-          {/* About Us Link */}
           <Link href="/about">
             <Text
               _hover={{ color: "green.500" }}
               fontWeight="semibold"
-              color="gray.700"
               cursor="pointer"
             >
               About Us
             </Text>
           </Link>
-
-          {/* Contact Us Link */}
           <Link href="/work">
             <Text
-              _hover={{ color: "green.500" }}
+              _hover={{ color: "green.500"}}
               fontWeight="semibold"
-              color="gray.700"
               cursor="pointer"
+              
             >
               How It Works
             </Text>
           </Link>
         </Flex>
       </Flex>
-      <Box mb={"5em"} textAlign={"center"}>
-        <Heading fontSize={"6xl"}>Contact Us</Heading>
-        <Text ml={"14em"} fontSize={"xl"} color={"gray"} w={"37em"}>
+         <Flex align="center" justify="center" mt="2em">
+          <Flex
+            align="center"
+            justify="center"
+            gap="0.5em"
+            px="1em"
+            py="0.5em"
+            bg="lightgreen"
+            borderRadius="1em"
+            boxShadow="md"
+          >
+            <Box fontSize="xl" color="red.700">
+              <FaPhoneAlt />
+            </Box>
+            <Text color="green" textAlign="center" fontSize="md">
+              Get In Touch
+            </Text>
+          </Flex>
+        </Flex>
+      {/* Main Heading and Description */}
+      <Box
+        mb={12}
+        textAlign="center"
+        px={4}
+        maxW="1200px"
+        mx="auto"
+        width="100%"
+      >
+        <Heading fontSize={{ base: "4xl", md: "6xl" }}>Contact Us</Heading>
+        <Text fontSize="lg" color="gray.600" maxW="37em" mx="auto" mt={4}>
           Have questions? We'd love to hear from you. Send us a message and
           we'll respond as soon as possible.
         </Text>
       </Box>
-      <Flex gap={"5em"} ml={"5em"}>
-        <Box ml={"2em"}>
-          <Heading fontSize={"3xl"}>Let's Start a Conversation</Heading>
-          <Text w={"30em"} fontSize={"xl"} mt={"1em"} color={"gray"}>
+
+      {/* Content Section: Two Columns on large screens, stacked on mobile */}
+      <Flex
+        gap={8}
+        flexDirection={{ base: "column", md: "row" }}
+        px={4}
+        maxW="1200px"
+        mx="auto"
+        mb={16}
+        width="100%"
+      >
+        {/* Contact Info */}
+        <Box flex="1" mb={{ base: 8, md: 0 }} width="100%">
+          <Heading fontSize="2xl" mb={4}>
+            Let's Start a Conversation
+          </Heading>
+          <Text mb={6} maxW="30em" fontSize="lg" color="gray.700">
             Whether you're a buyer looking for products or a seller wanting to
             join our marketplace, we're here to help you succeed.
           </Text>
-          <Flex
-            gap={"1em"}
-            mt={"2em"}
-            _hover={{ boxShadow: "xl" }}
-            transition="all 0.3s ease"
-            py={"1em"}
-            w={"29em"}
-            rounded={"1em"}
-            shadow={"md"}
-          >
-            <Box
-              border={"1px"}
-              py={"1em"}
-              rounded={"1em"}
-              h={"3em"}
-              px={"1em"}
-              ml={"2em"}
-              backgroundColor={"green"}
-              color={"white"}
+
+          {/* Contact Methods */}
+          <VStack spacing={4} align="stretch">
+            {/* Email */}
+            <Flex
+              align="center"
+              p={4}
+              rounded="md"
+              shadow="md"
+              _hover={{ shadow: "xl" }}
+              transition="all 0.3s ease"
+              bg="white"
             >
-              <MdEmail />
-            </Box>
-            <Box>
-              <Text fontSize={"2xl"} fontWeight={"bold"}>
-                Email Us
-              </Text>
-              <Text color="#02A150" fontSize={"lg"} fontWeight={"bold"}>
-                ahaioma37@gmail.com
-              </Text>
-              <Text>Send us an email anytime </Text>
-            </Box>
-          </Flex>
-          <Flex
-            gap={"1em"}
-            mt={"2em"}
-            _hover={{ boxShadow: "xl" }}
-            transition="all 0.3s ease"
-            py={"1em"}
-            w={"29em"}
-            rounded={"1em"}
-            shadow={"md"}
-          >
-            <Box
-              border={"1px"}
-              py={"1em"}
-              rounded={"1em"}
-              h={"3em"}
-              px={"1em"}
-              ml={"2em"}
-              backgroundColor={"#E1306C"}
-              color={"white"}
+              <Box
+                border="1px"
+                p={2}
+                rounded="full"
+                bg="green.500"
+                color="white"
+                mr={4}
+              >
+                <MdEmail size="24px" />
+              </Box>
+              <VStack align="start" spacing={0}>
+                <Text fontWeight="bold" fontSize="lg">
+                  Email Us
+                </Text>
+                <Text color="#02A150" fontSize="md" fontWeight="bold">
+                  ahaioma37@gmail.com
+                </Text>
+                <Text fontSize="sm">Send us an email anytime</Text>
+              </VStack>
+            </Flex>
+
+            {/* Call Us */}
+            <Flex
+              align="center"
+              p={4}
+              rounded="md"
+              shadow="md"
+              _hover={{ shadow: "xl" }}
+              transition="all 0.3s ease"
+              bg="white"
             >
-              <FaPhoneAlt />
-            </Box>
-            <Box>
-              <Text fontSize={"2xl"} fontWeight={"bold"}>
-                Call Us
-              </Text>
-              <Text color="#02A150" fontSize={"lg"} fontWeight={"bold"}>
-                +234 907 940 5147
-              </Text>
-              <Text>Mon-Fri from 8am to 5pm </Text>
-            </Box>
-          </Flex>
-          <Flex
-            gap={"1em"}
-            mt={"2em"}
-            _hover={{ boxShadow: "xl" }}
-            transition="all 0.3s ease"
-            py={"1em"}
-            w={"29em"}
-            rounded={"1em"}
-            shadow={"md"}
-          >
-            <Box
-              border={"1px"}
-              py={"1em"}
-              rounded={"1em"}
-              h={"3em"}
-              px={"1em"}
-              ml={"2em"}
-              backgroundColor={"#1DA1F2"}
-              color={"white"}
+              <Box
+                border="1px"
+                p={2}
+                rounded="full"
+                bg="#E1306C"
+                color="white"
+                mr={4}
+              >
+                <FaPhoneAlt size="24px" />
+              </Box>
+              <VStack align="start" spacing={0}>
+                <Text fontWeight="bold" fontSize="lg">
+                  Call Us
+                </Text>
+                <Text color="#02A150" fontSize="md" fontWeight="bold">
+                  +234 907 940 5147
+                </Text>
+                <Text fontSize="sm">Mon-Fri from 8am to 5pm</Text>
+              </VStack>
+            </Flex>
+
+            {/* Visit Us */}
+            <Flex
+              align="center"
+              p={4}
+              rounded="md"
+              shadow="md"
+              _hover={{ shadow: "xl" }}
+              transition="all 0.3s ease"
+              bg="white"
             >
-              <FaLocationDot />
-            </Box>
-            <Box>
-              <Text fontSize={"2xl"} fontWeight={"bold"}>
-                Visit Us
-              </Text>
-              <Text color="#02A150" fontSize={"lg"} fontWeight={"bold"}>
-                Green park, 1 Alo street Nteze Abba, Abakaliki, Ebonyi State
-              </Text>
-              <Text>Come say hello at our office</Text>
-            </Box>
-          </Flex>
+              <Box
+                border="1px"
+                p={2}
+                rounded="full"
+                bg="#1DA1F2"
+                color="white"
+                mr={4}
+              >
+                <FaLocationDot size="24px" />
+              </Box>
+              <VStack align="start" spacing={0}>
+                <Text fontWeight="bold" fontSize="lg">
+                  Visit Us
+                </Text>
+                <Text color="#02A150" fontSize="md" fontWeight="bold">
+                  Green park, 1 Alo street Nteze Abba, Abakaliki, Ebonyi State
+                </Text>
+                <Text fontSize="sm">Come say hello at our office</Text>
+              </VStack>
+            </Flex>
+          </VStack>
         </Box>
-        <Box shadow={"2xl"} px={"2.5em"} py={"2em"} w={"32em"} mt={10}>
-          <Box>
-            <Heading fontSize={"xl"}>Send us a Message</Heading>
-          </Box>
-          <Stack gap={4}>
-            <Flex mt={"2em"}>
+
+        {/* Contact Form */}
+        <Box
+          flex="1"
+          bg="green.50"
+          p={6}
+          borderRadius="md"
+          shadow="2xl"
+          w="full"
+          maxW="500px"
+          mx="auto"
+          width="100%"
+        >
+          <Heading fontSize="xl" mb={4}>
+            Send us a Message
+          </Heading>
+          <Stack spacing={4}>
+            {/* Name Fields */}
+            <Flex gap={4} flexDir={{ base: "column", sm: "row" }}>
               <FormControl isRequired>
                 <FormLabel>First Name</FormLabel>
                 <Input
@@ -331,10 +307,8 @@ const Contact = () => {
                   value={formData.firstName}
                   onChange={handleChange}
                   focusBorderColor="green.500"
-                  w={"9em"}
                 />
               </FormControl>
-
               <FormControl isRequired>
                 <FormLabel>Last Name</FormLabel>
                 <Input
@@ -343,88 +317,131 @@ const Contact = () => {
                   value={formData.lastName}
                   onChange={handleChange}
                   focusBorderColor="green.500"
-                  w={"9em"}
                 />
               </FormControl>
             </Flex>
 
+            {/* Email */}
             <FormControl isRequired>
               <FormLabel>Email</FormLabel>
               <Input
-                size={"lg"}
-                name="email"
                 type="email"
                 placeholder="your.email@example.com"
+                name="email"
                 value={formData.email}
                 onChange={handleChange}
                 focusBorderColor="green.500"
               />
             </FormControl>
 
+            {/* Phone */}
             <FormControl>
               <FormLabel>Phone Number</FormLabel>
               <Input
-                size={"lg"}
-                name="phone"
                 type="tel"
                 placeholder="+234 xxx xxx xxxx"
+                name="phone"
                 value={formData.phone}
                 onChange={handleChange}
                 focusBorderColor="green.500"
               />
             </FormControl>
 
+            {/* Subject */}
             <FormControl isRequired>
               <FormLabel>Subject</FormLabel>
               <Input
-                name="subject"
                 placeholder="General Inquiry"
+                name="subject"
                 value={formData.subject}
                 onChange={handleChange}
                 focusBorderColor="green.500"
               />
             </FormControl>
 
+            {/* Message */}
             <FormControl isRequired>
               <FormLabel>Message</FormLabel>
               <Textarea
-                name="message"
                 placeholder="Tell us how we can help you..."
+                name="message"
+                rows={4}
                 value={formData.message}
                 onChange={handleChange}
                 focusBorderColor="green.500"
               />
             </FormControl>
 
-            <Button colorScheme="green" onClick={handleSubmit}>
+            {/* Send Button */}
+            <Button colorScheme="green" onClick={handleSubmit} width="full">
               Send Message
             </Button>
           </Stack>
         </Box>
       </Flex>
-      <Box>
-        <Heading>Frequently Asked Questions</Heading>
-        <Text>
-          Quick answers to common questions How do I start selling on Ahiaoma?
-        </Text>
+
+      {/* FAQ Section */}
+      <Box
+        bg="green.50"
+        px={4}
+        py={8}
+        maxW="1200px"
+        mx="auto"
+        mb={16}
+        overflowX="hidden"
+      >
+        <Box textAlign="center" mb={6}>
+          <Heading fontSize={{ base: "2xl", md: "4xl" }}>
+            Frequently Asked Questions
+          </Heading>
+          <Text fontSize="md" color="gray.600" mt={2}>
+            Quick answers to common questions. How do I start selling on
+            Ahiaoma?
+          </Text>
+        </Box>
+
+        {/* FAQ Items */}
+        <VStack spacing={4} align="center" px={2}>
+          <Box bg="white" p={6} rounded="md" shadow="md" w="full" maxW="50em">
+            <Heading fontSize="xl" mb={2}>
+              How do I start on Ahiaoma?
+            </Heading>
+            <Text color={"gray"}>
+              Simply download our app, create a sell account, and start listing
+              your products. Our team will guide you through the verification
+              process.
+            </Text>
+          </Box>
+          <Box bg="white" p={6} rounded="md" shadow="md" w="full" maxW="50em">
+            <Heading fontSize="xl" mb={2}>
+              What are the fees for sellers?
+            </Heading>
+            <Text  color={"gray"}>
+              We charge a small commission on successful sales. There are no
+              upfront fees or monthly charges to list your products.
+            </Text>
+          </Box>
+          <Box bg="white" p={6} rounded="md" shadow="md" w="full" maxW="50em">
+            <Heading fontSize="xl" mb={2}>
+              How secure are payments on Ahiaoma?
+            </Heading>
+            <Text  color={"gray"}>
+              All payments are processed through secure, encrypted channels. We
+              use bank-level security to protect both buyers and sellers.
+            </Text>
+          </Box>
+          <Box bg="white" p={6} rounded="md" shadow="md" w="full" maxW="50em">
+            <Heading fontSize="xl" mb={2}>
+              Do you deliver nationwide?
+            </Heading>
+            <Text  color={"gray"}>
+              Yes, we have delivery partners across Nigeria to ensure your
+              products reach customers anywhere in the country.
+            </Text>
+          </Box>
+        </VStack>
       </Box>
-      <Box>
-        <Heading>How do I start on Ahiaoma?</Heading>
-        <Text> Simply download our app, create a sell account, and start listing your products. Our team will guide you through the verification process.</Text>
-      </Box>
-      <Box>
-        <Heading>What are the fees for sellers?</Heading>
-        <Text>We charge a small commission on successful sales. There are no upfront fees or monthly charges to list your products.</Text>
-      </Box>
-      <Box>
-        <Heading>How seure are payment on Ahiaoma?</Heading>
-        <Text>All payments are processed through secure, encrypted channels. We use bank-level security to protect both buyers and sellers.</Text>
-      </Box>
-      <Box>
-        <Heading>Do you deliver nationwide?</Heading>
-        <Text>Yes, we have delivery partners across Nigeria to ensure your products reach customers anywhere in the country.</Text>
-      </Box>
-    </>
+    </Box>
   );
 };
 
