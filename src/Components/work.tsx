@@ -82,10 +82,11 @@ export const Work = () => {
 
           {/* Join Waitlist Button */}
           <Button
-            bg="green.600"
+            bg="green"
             rounded="full"
             px={4}
             py={2}
+            fontSize={"xl"}
             color="white"
             _hover={{ bg: "green.700" }}
             display={{ base: "none", md: "block" }}
@@ -94,7 +95,7 @@ export const Work = () => {
           </Button>
         </Flex>
         <Box
-          bg="linear-gradient(to top right, #eeeeeeff, #ffffff)"
+          bg="linear-gradient(to top right, #fafafaff, #ffffff)"
           mb={"2em"}
           py={"0.5em"}
         >
@@ -104,21 +105,26 @@ export const Work = () => {
             height="15vh"
             position="relative"
           >
-            <Box
+            <Flex
               rounded="1em"
-              backgroundColor="lightgreen"
-              w="7em"
-              px="0.5em"
-              py="0.1em"
+              backgroundColor="#a1ebaeff"
+              w="9em"
+              align={"center"}
+              gap={"0.5em"}
+              px="0.9em"
+              py="0.3em"
               position="absolute"
               top="79%"
               left="50%"
               transform="translate(-50%, -50%)"
             >
+              <Box w={".8em"}>
+                <Image src="mobile.png"/>
+              </Box>
               <Text color="green" textAlign="center" fontSize="md">
                 How it Works
               </Text>
-            </Box>
+            </Flex>
           </Box>
 
           {/* Steps Header */}
@@ -170,7 +176,7 @@ export const Work = () => {
 
             <VStack align="center" spacing={4} mt={8}>
               <Heading
-                fontSize={{ base: "7xl", md: "5xl" }}
+                fontSize={{ base: "7xl", md: "6xl" }}
                 fontWeight="bold"
                 color="black"
                 textAlign="center"
@@ -212,11 +218,11 @@ export const Work = () => {
             </Box>
           </Flex>
 
-          <Heading fontSize="5xl" mt="0.5em" mb="0.2em" textAlign="center">
+          <Heading fontSize="6xl" mt="0.5em" mb="0.2em" textAlign="center">
             How to Buy on Ahiaoma
           </Heading>
 
-          <Text textAlign="center" color="gray.600" mb="2em">
+          <Text fontSize={"xl"} textAlign="center" color="gray.600" mb="2em">
             From browsing to delivery, here’s your complete buying journey
           </Text>
         </Center>
@@ -232,12 +238,16 @@ export const Work = () => {
           position="relative"
         >
           {/* Left Text Section */}
-          <Box ml={{base:"1em", md:"0.3em"}}flex="1" textAlign={{ base: "center", md: "left" }}>
+          <Box
+            ml={{ base: "1em", md: "0.3em" }}
+            flex="1"
+            textAlign={{ base: "center", md: "left" }}
+          >
             <Flex align="center" mb="1.5em">
-              <Circle size="2em" bg="green.400" color="white" fontWeight="bold">
+              <Circle size="3em" bg="green.400" color="white" fontWeight="bold">
                 1
               </Circle>
-              <Box h="2px" w="4em" bg="green.400" ml="0.5em" />
+              <Box h="4px" w="4em" bg="green.400" rounded={"1em"} ml="0.5em" />
             </Flex>
             <Box>
               <Heading fontSize="4xl" mb="0.5em">
@@ -371,7 +381,11 @@ export const Work = () => {
               />
             </MotionBox>
           </Box>
-          <Box ml={{ base: "1em", md: "9em" }} flex="1" textAlign={{ base: "center", md: "left" }}>
+          <Box
+            ml={{ base: "1em", md: "9em" }}
+            flex="1"
+            textAlign={{ base: "center", md: "left" }}
+          >
             <Flex align="center" mb="1.5em">
               <Circle size="3em" bg="green.400" color="white" fontWeight="bold">
                 2
@@ -399,12 +413,16 @@ export const Work = () => {
           position="relative"
         >
           {/* Left Text Section */}
-          <Box ml={{ base: "1em", md: "0.2em" }} flex="1" textAlign={{ base: "center", md: "left" }}>
+          <Box
+            ml={{ base: "1em", md: "0.2em" }}
+            flex="1"
+            textAlign={{ base: "center", md: "left" }}
+          >
             <Flex align="center" mb="1.5em">
               <Circle size="3em" bg="green.400" color="white" fontWeight="bold">
                 3
               </Circle>
-              <Box h="2px" w="4em" bg="green.400" ml="0.5em" />
+              <Box h="4px" w="4em" bg="green.400" ml="0.5em" />
             </Flex>
             <Box>
               <Heading fontSize="4xl" mb="0.5em">
@@ -431,7 +449,7 @@ export const Work = () => {
               fontWeight="bold"
               position="absolute"
               top="1.9em"
-              left={{base:"79%", md:"62%"}}
+              left={{ base: "79%", md: "62%" }}
               transform="translateX(-50%)"
               animate={{ scale: [1, 1.2, 1] }}
               transition={{
@@ -537,7 +555,11 @@ export const Work = () => {
               />
             </MotionBox>
           </Box>
-          <Box ml={{ base: "1em", md: "9em" }} flex="1" textAlign={{ base: "center", md: "left" }}>
+          <Box
+            ml={{ base: "1em", md: "9em" }}
+            flex="1"
+            textAlign={{ base: "center", md: "left" }}
+          >
             <Flex align="center" mb="1.5em">
               <Circle size="3em" bg="green.400" color="white" fontWeight="bold">
                 4
@@ -565,12 +587,16 @@ export const Work = () => {
           position="relative"
         >
           {/* Left Text Section */}
-          <Box ml={{ base: "1em", md: "0.2em" }} flex="1" textAlign={{ base: "center", md: "left" }}>
+          <Box
+            ml={{ base: "1em", md: "0.2em" }}
+            flex="1"
+            textAlign={{ base: "center", md: "left" }}
+          >
             <Flex align="center" mb="1.5em">
               <Circle size="3em" bg="green.400" color="white" fontWeight="bold">
                 5
               </Circle>
-              <Box h="2px" w="4em" bg="green.400" ml="0.5em" />
+              <Box h="4px" w="4em" bg="green.400" ml="0.5em" />
             </Flex>
             <Box>
               <Heading fontSize="4xl" mb="0.5em">
@@ -703,7 +729,11 @@ export const Work = () => {
               />
             </MotionBox>
           </Box>
-          <Box ml={{ base: "1em", md: "9em" }}flex="1" textAlign={{ base: "center", md: "left" }}>
+          <Box
+            ml={{ base: "1em", md: "9em" }}
+            flex="1"
+            textAlign={{ base: "center", md: "left" }}
+          >
             <Flex align="center" mb="1.5em">
               <Circle size="3em" bg="green.400" color="white" fontWeight="bold">
                 6
@@ -731,12 +761,16 @@ export const Work = () => {
           position="relative"
         >
           {/* Left Text Section */}
-          <Box ml={{ base: "1em", md: "0.2em" }} flex="1" textAlign={{ base: "center", md: "left" }}>
+          <Box
+            ml={{ base: "1em", md: "0.2em" }}
+            flex="1"
+            textAlign={{ base: "center", md: "left" }}
+          >
             <Flex align="center" mb="1.5em">
               <Circle size="3em" bg="green.400" color="white" fontWeight="bold">
                 7
               </Circle>
-              <Box h="2px" w="4em" bg="green.400" ml="0.5em" />
+              <Box h="4px" w="4em" bg="green.400" ml="0.5em" />
             </Flex>
             <Box>
               <Heading fontSize="4xl" mb="0.5em">
@@ -784,7 +818,7 @@ export const Work = () => {
               backgroundColor="black"
               mt={"3em"}
               boxShadow="xl"
-              w={{ base: "13em", md: "13em" }}    
+              w={{ base: "13em", md: "13em" }}
               whileHover={{
                 scale: 1.08,
                 transition: {
@@ -869,7 +903,11 @@ export const Work = () => {
               />
             </MotionBox>
           </Box>
-          <Box ml={{ base: "1em", md: "9em" }} flex="1" textAlign={{ base: "center", md: "left" }}>
+          <Box
+            ml={{ base: "1em", md: "9em" }}
+            flex="1"
+            textAlign={{ base: "center", md: "left" }}
+          >
             <Flex align="center" mb="1.5em">
               <Circle size="3em" bg="green.400" color="white" fontWeight="bold">
                 8
@@ -916,22 +954,28 @@ export const Work = () => {
             >
               <Flex align="center" mb="1.5em">
                 <Circle
-                  size="2em"
+                  size="3em"
                   bg="green.400"
                   color="white"
                   fontWeight="bold"
                 >
                   1
                 </Circle>
-                <Box h="2px" w="4em" bg="green.400" ml="0.5em" />
+                <Box
+                  h="4px"
+                  rounded={"2em"}
+                  w="4em"
+                  bg="green.400"
+                  ml="0.5em"
+                />
               </Flex>
               <Box>
                 <Heading fontSize="4xl" mb="0.5em">
-                  Browse Products
+                  Smart Dashboard{" "}
                 </Heading>
                 <Text fontSize="lg" color="gray.600">
-                  Explore thousands of products from verified sellers across
-                  Nigeria
+                  Access your personalized dashboard with dynamic insights and
+                  AI-powered suggestions to grow your business
                 </Text>
               </Box>
             </Box>
@@ -951,7 +995,7 @@ export const Work = () => {
                 fontWeight="bold"
                 position="absolute"
                 top="1.9em"
-                left={{base:"79%", md:"62%"}}
+                left={{ base: "79%", md: "62%" }}
                 transform="translateX(-50%)"
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{
@@ -1057,7 +1101,11 @@ export const Work = () => {
                 />
               </MotionBox>
             </Box>
-            <Box ml={{ base: "1em", md: "9em" }} flex="1" textAlign={{ base: "center", md: "left" }}>
+            <Box
+              ml={{ base: "1em", md: "9em" }}
+              flex="1"
+              textAlign={{ base: "center", md: "left" }}
+            >
               <Flex align="center" mb="1.5em">
                 <Circle
                   size="3em"
@@ -1071,16 +1119,17 @@ export const Work = () => {
                   h="4px"
                   w="4em"
                   bg="green.400"
-                  rounded={"1em"}
+                  rounded={"2em"}
                   ml="0.5em"
                 />
               </Flex>
               <Box>
                 <Heading fontSize="3xl" mb="0.5em">
-                  Make Payment
+                  Quick Actions & Activities
                 </Heading>
                 <Text fontSize="1.1em" color="gray.600">
-                  Complete your purchase with secure payment options{" "}
+                  Get instant access to quick actions and monitor your recent
+                  business activities in real-time{" "}
                 </Text>
               </Box>
             </Box>
@@ -1103,22 +1152,28 @@ export const Work = () => {
             >
               <Flex align="center" mb="1.5em">
                 <Circle
-                  size="2em"
+                  size="3em"
                   bg="green.400"
                   color="white"
                   fontWeight="bold"
                 >
                   3
                 </Circle>
-                <Box h="2px" w="4em" bg="green.400" ml="0.5em" />
+                <Box
+                  h="4px"
+                  w="4em"
+                  rounded={"2em"}
+                  bg="green.400"
+                  ml="0.5em"
+                />
               </Flex>
               <Box>
                 <Heading fontSize="4xl" mb="0.5em">
-                  Browse Products
+                  List Your Products{" "}
                 </Heading>
                 <Text fontSize="lg" color="gray.600">
-                  Explore thousands of products from verified sellers across
-                  Nigeria
+                  Easily add and manage your product listings with detailed
+                  descriptions, images, and pricing
                 </Text>
               </Box>
             </Box>
@@ -1244,7 +1299,11 @@ export const Work = () => {
                 />
               </MotionBox>
             </Box>
-            <Box ml={{ base: "1em", md: "9em" }} flex="1" textAlign={{ base: "center", md: "left" }}>
+            <Box
+              ml={{ base: "1em", md: "9em" }}
+              flex="1"
+              textAlign={{ base: "center", md: "left" }}
+            >
               <Flex align="center" mb="1.5em">
                 <Circle
                   size="3em"
@@ -1258,16 +1317,17 @@ export const Work = () => {
                   h="4px"
                   w="4em"
                   bg="green.400"
-                  rounded={"1em"}
+                  rounded={"2em"}
                   ml="0.5em"
                 />
               </Flex>
               <Box>
                 <Heading fontSize="3xl" mb="0.5em">
-                  Make Payment
+                  View Incoming Orders
                 </Heading>
                 <Text fontSize="1.1em" color="gray.600">
-                  Complete your purchase with secure payment options{" "}
+                  Monitor all incoming orders from customers and manage your
+                  sales pipeline effectively{" "}
                 </Text>
               </Box>
             </Box>
@@ -1290,22 +1350,28 @@ export const Work = () => {
             >
               <Flex align="center" mb="1.5em">
                 <Circle
-                  size="2em"
+                  size="3em"
                   bg="green.400"
                   color="white"
                   fontWeight="bold"
                 >
                   5
                 </Circle>
-                <Box h="2px" w="4em" bg="green.400" ml="0.5em" />
+                <Box
+                  h="4px"
+                  w="4em"
+                  rounded={"2em"}
+                  bg="green.400"
+                  ml="0.5em"
+                />
               </Flex>
               <Box>
                 <Heading fontSize="4xl" mb="0.5em">
-                  Browse Products
+                  Order Management{" "}
                 </Heading>
                 <Text fontSize="lg" color="gray.600">
-                  Explore thousands of products from verified sellers across
-                  Nigeria
+                  Accept or reject orders based on your inventory and business
+                  preferences
                 </Text>
               </Box>
             </Box>
@@ -1325,7 +1391,7 @@ export const Work = () => {
                 fontWeight="bold"
                 position="absolute"
                 top="1.9em"
-                left={{base:"79%",md:"62%"}}
+                left={{ base: "79%", md: "62%" }}
                 transform="translateX(-50%)"
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{
@@ -1431,7 +1497,11 @@ export const Work = () => {
                 />
               </MotionBox>
             </Box>
-            <Box ml={{ base: "1em", md: "9em" }} flex="1" textAlign={{ base: "center", md: "left" }}>
+            <Box
+              ml={{ base: "1em", md: "9em" }}
+              flex="1"
+              textAlign={{ base: "center", md: "left" }}
+            >
               <Flex align="center" mb="1.5em">
                 <Circle
                   size="3em"
@@ -1445,16 +1515,17 @@ export const Work = () => {
                   h="4px"
                   w="4em"
                   bg="green.400"
-                  rounded={"1em"}
+                  rounded={"2em"}
                   ml="0.5em"
                 />
               </Flex>
               <Box>
                 <Heading fontSize="3xl" mb="0.5em">
-                  Make Payment
+                  Detailed Order Info{" "}
                 </Heading>
                 <Text fontSize="1.1em" color="gray.600">
-                  Complete your purchase with secure payment options{" "}
+                  Access comprehensive order details including customer
+                  information and delivery requirements{" "}
                 </Text>
               </Box>
             </Box>
@@ -1477,22 +1548,28 @@ export const Work = () => {
             >
               <Flex align="center" mb="1.5em">
                 <Circle
-                  size="2em"
+                  size="3em"
                   bg="green.400"
                   color="white"
                   fontWeight="bold"
                 >
                   7
                 </Circle>
-                <Box h="2px" w="4em" bg="green.400" ml="0.5em" />
+                <Box
+                  h="4px"
+                  w="4em"
+                  rounded={"2em"}
+                  bg="green.400"
+                  ml="0.5em"
+                />
               </Flex>
               <Box>
                 <Heading fontSize="4xl" mb="0.5em">
-                  Browse Products
+                  Customer Insights{" "}
                 </Heading>
                 <Text fontSize="lg" color="gray.600">
-                  Explore thousands of products from verified sellers across
-                  Nigeria
+                  View buyer details and actions to better understand your
+                  customer base
                 </Text>
               </Box>
             </Box>
@@ -1618,7 +1695,11 @@ export const Work = () => {
                 />
               </MotionBox>
             </Box>
-            <Box ml={{ base: "1em", md: "9em" }} flex="1" textAlign={{ base: "center", md: "left" }}>
+            <Box
+              ml={{ base: "1em", md: "9em" }}
+              flex="1"
+              textAlign={{ base: "center", md: "left" }}
+            >
               <Flex align="center" mb="1.5em">
                 <Circle
                   size="3em"
@@ -1632,16 +1713,17 @@ export const Work = () => {
                   h="4px"
                   w="4em"
                   bg="green.400"
-                  rounded={"1em"}
+                  rounded={"2em"}
                   ml="0.5em"
                 />
               </Flex>
               <Box>
                 <Heading fontSize="3xl" mb="0.5em">
-                  Make Payment
+                  Performance Analytics
                 </Heading>
                 <Text fontSize="1.1em" color="gray.600">
-                  Complete your purchase with secure payment options{" "}
+                  Track your real-time performance metrics and sales analytics
+                  to optimize your business
                 </Text>
               </Box>
             </Box>
@@ -1658,28 +1740,34 @@ export const Work = () => {
           >
             {/* Left Text Section */}
             <Box
-             ml={{ base: "1em", md: "0.2em" }}
+              ml={{ base: "1em", md: "0.2em" }}
               flex="1"
               textAlign={{ base: "center", md: "left" }}
             >
               <Flex align="center" mb="1.5em">
                 <Circle
-                  size="2em"
+                 size="3em"
                   bg="green.400"
                   color="white"
                   fontWeight="bold"
                 >
                   9
                 </Circle>
-                <Box h="2px" w="4em" bg="green.400" ml="0.5em" />
+                <Box
+                  h="4px"
+                  rounded={"2em"}
+                  w="4em"
+                  bg="green.400"
+                  ml="0.5em"
+                />
               </Flex>
               <Box>
                 <Heading fontSize="4xl" mb="0.5em">
-                  Browse Products
+                  Order History{" "}
                 </Heading>
                 <Text fontSize="lg" color="gray.600">
-                  Explore thousands of products from verified sellers across
-                  Nigeria
+                  Review all processed orders and maintain complete records of
+                  your sales history
                 </Text>
               </Box>
             </Box>
@@ -1699,7 +1787,7 @@ export const Work = () => {
                 fontWeight="bold"
                 position="absolute"
                 top="1.9em"
-                left={{base:"79%", md:"62%"}}
+                left={{ base: "79%", md: "62%" }}
                 transform="translateX(-50%)"
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{

@@ -12,7 +12,7 @@ import {
   Icon,
   VStack,
 } from "@chakra-ui/react";
-
+import { PiStarFourFill } from "react-icons/pi";
 import { IoCheckmarkSharp } from "react-icons/io5";
 import { motion } from "framer-motion";
 import { FaStar, FaQuoteLeft } from "react-icons/fa6";
@@ -24,7 +24,7 @@ import { IoEllipseSharp } from "react-icons/io5";
 import { IoRocketSharp } from "react-icons/io5";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { img } from "framer-motion/client";
-// import { img } from "framer-motion/client";
+import { BiSolidMessageRounded } from "react-icons/bi";
 
 const MotionBox = motion(Box);
 const MotionIcon = motion(Icon);
@@ -116,6 +116,7 @@ const Home = () => {
           py={{ base: 12, md: 20 }}
           px={{ base: 6, md: 10 }}
           position="relative"
+          // mb={"3em"}
         >
           {/* Left Section */}
           <Box flex="1">
@@ -155,7 +156,7 @@ const Home = () => {
               </MotionBox>
 
               <Heading
-                fontSize={{ base: "2xl", md: "5xl" }}
+                fontSize={{ base: "2xl", md: "7xl" }}
                 fontWeight="bolder"
                 color="black"
                 mt={"1em"}
@@ -168,7 +169,7 @@ const Home = () => {
                 </Box>
               </Heading>
 
-              {/* Add the "View Features" link here */}
+              {/* Add the "View Features" link here
               <Link
                 href="#powerful-features"
                 _hover={{ textDecoration: "underline", color: "green.500" }}
@@ -177,12 +178,12 @@ const Home = () => {
                 mt={4}
               >
                 View Features
-              </Link>
+              </Link> */}
             </Box>
 
             <Text
               mt={4}
-              fontSize={{ base: "md", md: "lg" }}
+              fontSize={{ base: "md", md: "2xl" }}
               color="gray.700"
               w={{ base: "100%", md: "25em" }}
               mx={{ base: "auto", md: "0" }}
@@ -278,9 +279,9 @@ const Home = () => {
           {/* Right Section */}
           <Box
             // flex="1"
-            // ml={{ base: "1em", md: "-1em" }}
+            // ml={{ base: "1em", md: "9em" }}
             position="relative"
-            mt={{ base: 10, md: 0 }}
+            mt={{ base: "5em", md: "6em" }}
           >
             <MotionBox
               rounded="1em"
@@ -348,26 +349,30 @@ const Home = () => {
         </Flex>
 
         {/* Power Features Section with id */}
-        <Box id="powerful-features" textAlign="center" mt={5}>
-          <Text
+        <Box id="powerful-features" textAlign="center" mt={"4em"}>
+          <Flex
             textAlign="center"
             maxW="1200px"
             mx="auto"
+            gap={"0.2em"}
             color="green"
             px={"0.3em"}
+            align={"center"}
             py={"0.3em"}
             backgroundColor={"#effdffff"}
             width={"12em"}
-            rounded={"2em"}
-            fontSize="md"
-            fontWeight={"600"}
           >
-            Why Choose Ahiaoma
-          </Text>
-          <Heading fontSize={{ base: "2xl", md: "3xl" }} color="black">
+            <Box>
+              <PiStarFourFill color="gold" />
+            </Box>
+            <Text rounded={"2em"} fontSize="md" fontWeight={"600"}>
+              Why Choose Ahiaoma
+            </Text>
+          </Flex>
+          <Heading fontSize={{ base: "6xl", md: "5xl" }} color="gray.600">
             Powerful Features
           </Heading>
-          <Text color="gray.400" mt={2}>
+          <Text fontSize={"2xl"} color="gray.400" mt={2}>
             Everything you need for a seamless shopping experience
           </Text>
         </Box>
@@ -401,10 +406,10 @@ const Home = () => {
             >
               <MdOutlineShield />
             </Box>
-            <Text fontWeight="bold" fontSize="1.1em" mb="4px">
+            <Text fontWeight="bold" fontSize="1.9em" mb="4px">
               Secure Payment
             </Text>
-            <Text fontSize="0.9em" color="gray.600">
+            <Text fontSize="2xl" fontWeight={"normal"} color="gray.600">
               Bank-level encryption and fraud protection for every transaction
             </Text>
             <Box
@@ -412,11 +417,11 @@ const Home = () => {
               _hover={{ transform: "scale(1.05)", bg: "#e0f7fa" }}
               transition="transform 0.2s, background-color 0.2s"
               bg="green.500"
-                  color="white"
-                  rounded="full"
-                  p="0.7em"
-                  mt={"2em"}
-                  boxShadow="lg"
+              color="white"
+              rounded="full"
+              p="0.7em"
+              mt={"2em"}
+              boxShadow="lg"
               w={"2.9em"}
               // backgroundColor={"#4CAF50"}
             >
@@ -446,22 +451,22 @@ const Home = () => {
             >
               <HiMiniShoppingBag />
             </Box>
-            <Text fontWeight="bold" fontSize="1.1em" mb="4px">
+            <Text fontWeight="bold" fontSize="1.9em" mb="4px">
               Wide Selection
             </Text>
-            <Text fontSize="0.9em" color="gray.600">
+            <Text fontSize="2xl" color="gray.600">
               Millions of products from verified sellers across Nigeria
             </Text>
-              <Box
+            <Box
               ml={"19em"}
               _hover={{ transform: "scale(1.05)", bg: "#e0f7fa" }}
               transition="transform 0.2s, background-color 0.2s"
               bg="green.500"
-                  color="white"
-                  rounded="full"
-                  p="0.7em"
-                  mt={"2em"}
-                  boxShadow="lg"
+              color="white"
+              rounded="full"
+              p="0.7em"
+              mt={"2em"}
+              boxShadow="lg"
               w={"2.9em"}
               // backgroundColor={"#4CAF50"}
             >
@@ -491,22 +496,22 @@ const Home = () => {
             >
               <FaTruck />
             </Box>
-            <Text fontWeight="bold" fontSize="1.1em" mb="4px">
+            <Text fontWeight="bold" fontSize="1.9em" mb="4px">
               Fast Delivery
             </Text>
-            <Text fontSize="0.9em" color="gray.600">
+            <Text fontSize="2xl" color="gray.600">
               Same-day delivery in major cities, nationwide coverage
             </Text>
-              <Box
+            <Box
               ml={"19em"}
               _hover={{ transform: "scale(1.05)", bg: "#e0f7fa" }}
               transition="transform 0.2s, background-color 0.2s"
               bg="green.500"
-                  color="white"
-                  rounded="full"
-                  p="0.7em"
-                  mt={"2em"}
-                  boxShadow="lg"
+              color="white"
+              rounded="full"
+              p="0.7em"
+              mt={"2em"}
+              boxShadow="lg"
               w={"2.9em"}
               // backgroundColor={"#4CAF50"}
             >
@@ -518,17 +523,37 @@ const Home = () => {
         {/* Testimonials Section */}
         <Box
           bg="linear-gradient(to top right, #effdffff, #ffffff)"
-          p={8}
-          mt={"9em"}
+          p={10}
+          mt={"5em"}
         >
+          <Flex
+            textAlign="center"
+            maxW="1200px"
+            mx="auto"
+            gap={"0.3em"}
+            color="green"
+            px={"0.3em"}
+            align={"center"}
+            rounded={"2em"}
+            py={"0.3em"}
+            backgroundColor={"#c7f2f8ff"}
+            width={"10em"}
+          >
+            <Box>
+              <BiSolidMessageRounded color="white" />
+            </Box>
+            <Text fontSize="md" fontWeight={"600"}>
+              Customer Stories{" "}
+            </Text>
+          </Flex>
           <Heading
-            fontSize={{ base: "2xl", md: "3xl" }}
-            color="black"
+            fontSize={{ base: "2xl", md: "6xl" }}
+            color="gray.600"
             textAlign="center"
           >
             Loved by Thousands
           </Heading>
-          <Text color="gray.400" textAlign="center" mb={10}>
+          <Text fontSize={"2xl"} color="gray.400" textAlign="center" mb={10}>
             See what our community has to say about their experience
           </Text>
 
@@ -629,35 +654,35 @@ const Home = () => {
             </Box>
 
             {/* Quick Links */}
-            <Box ml={{base:"0.1em", md:"3em"}} minW="200px" mb={4}>
+            <Box ml={{ base: "0.1em", md: "3em" }} minW="200px" mb={4}>
               <Text fontWeight="bold" fontSize="lg" mb={4}>
                 Quick Links
               </Text>
               <VStack align="start" gap={2}>
                 <Flex gap={"5px"} align={"center"}>
-                  <IoEllipseSharp size={"8px"} color="green"/>
+                  <IoEllipseSharp size={"8px"} color="green" />
                   <Link href="/about">
-                  <Text cursor="pointer" color={"gray.400"} fontSize="lg">
-                    About Us
-                  </Text>
+                    <Text cursor="pointer" color={"gray.400"} fontSize="lg">
+                      About Us
+                    </Text>
                   </Link>
                 </Flex>
                 <Flex gap={"5px"} align={"center"}>
-                  <IoEllipseSharp size={"8px"} color="green"/>
+                  <IoEllipseSharp size={"8px"} color="green" />
                   <Link href="/#powerful-features">
-                  <Text cursor="pointer" color={"gray.400"} fontSize="lg">
-                    How It Works
-                  </Text>
+                    <Text cursor="pointer" color={"gray.400"} fontSize="lg">
+                      How It Works
+                    </Text>
                   </Link>
                 </Flex>
                 <Flex gap={"5px"} align={"center"}>
-                  <IoEllipseSharp size={"8px"} color="green"/>
+                  <IoEllipseSharp size={"8px"} color="green" />
                   <Text cursor="pointer" color={"gray.400"} fontSize="lg">
                     Seller Center
                   </Text>
                 </Flex>
                 <Flex gap={"5px"} align={"center"}>
-                  <IoEllipseSharp size={"8px"} color="green"/>
+                  <IoEllipseSharp size={"8px"} color="green" />
                   <Text cursor="pointer" color={"gray.400"} fontSize="lg">
                     Help Center
                   </Text>
@@ -666,7 +691,7 @@ const Home = () => {
             </Box>
 
             {/* Contact */}
-            <Box ml={{base:"0.1em", md:"9em"}}  minW="200px" mb={4}>
+            <Box ml={{ base: "0.1em", md: "9em" }} minW="200px" mb={4}>
               <Text fontWeight="bold" fontSize="lg" mb={4}>
                 Contact
               </Text>
@@ -675,27 +700,37 @@ const Home = () => {
                   <Box bg="#4CAF50" p={2} borderRadius="md" h={"2.2em"}>
                     <Icon as={MdOutlineEmail} color="#fff" boxSize={4} />
                   </Box>
-                  <Text fontSize="lg" color={"gray.400"}>ahiaoma37@gmail.com</Text>
+                  <Text fontSize="lg" color={"gray.400"}>
+                    ahiaoma37@gmail.com
+                  </Text>
                 </HStack>
                 <HStack align="center" gap={2}>
                   <Box bg="#2196F3" p={2} borderRadius="md" h={"2.2em"}>
                     <Icon as={FaPhone} color="#fff" boxSize={4} />
                   </Box>
-                  <Text fontSize="lg"  color={"gray.400"}>+234 907 940 5147</Text>
+                  <Text fontSize="lg" color={"gray.400"}>
+                    +234 907 940 5147
+                  </Text>
                 </HStack>
               </VStack>
             </Box>
           </Flex>
 
-         <Box
+          <Box
             border={"1px"}
             ml={"3em"}
-            w={{base:"15em", md:"75em"}}
+            w={{ base: "15em", md: "75em" }}
             borderColor={" grey"}
             h={"-0.1em"}
           />
-          <Flex fontSize={"xs"} color={"gray.500"} direction={{base:"row", md:"row"}} gap={"2em"} mt={"2em"}>
-            <Text ml={"3.5em"} fontSize="sm" >
+          <Flex
+            fontSize={"xs"}
+            color={"gray.500"}
+            direction={{ base: "row", md: "row" }}
+            gap={"2em"}
+            mt={"2em"}
+          >
+            <Text ml={"3.5em"} fontSize="sm">
               © 2025 Ahiaoma. All rights reserved.
             </Text>
             <Text ml={"53em"}>Privacy Policy</Text>

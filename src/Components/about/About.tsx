@@ -100,7 +100,7 @@ const About = () => {
         </Button>
       </Flex>
       <Box
-        bg="linear-gradient(to right bottom, #c4e9b3d8, #ffffff)"
+        bg="linear-gradient(to right bottom, #e5faeed8, #ffffff)"
         mb="7em"
         py="0.5em"
       >
@@ -181,7 +181,7 @@ const About = () => {
             <Box
               mt="0.5em"
               fontWeight="normal"
-              fontSize="lg"
+              fontSize="xl"
               w={{ base: "90%", md: "37.5em" }}
               textAlign="center"
               color="gray"
@@ -331,7 +331,7 @@ const About = () => {
               <Text fontSize="4xl" fontWeight="bolder" mt={4}>
                 {item.value}
               </Text>
-              <Text color={"green"} fontSize={"xl"} fontWeight={"bolder"}>
+              <Text color={"green"} fontSize={"lg"} fontWeight={"bolder"}>
                 {item.label}
               </Text>
               <Text fontSize="lg" mt={2} color="gray.600">
