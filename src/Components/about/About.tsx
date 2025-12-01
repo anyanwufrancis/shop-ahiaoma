@@ -22,11 +22,17 @@ import { MdCheckCircle, MdOutlineEmail } from "react-icons/md";
 import { RiCheckboxBlankCircleFill } from "react-icons/ri";
 import { BsFillStarFill } from "react-icons/bs";
 import { FaPhone } from "react-icons/fa6";
+import { FiX } from "react-icons/fi";
+import { useState } from "react";
 
 const About = () => {
   const MotionBox = motion(Box);
   const MotionIcon = motion(IoEllipseSharp);
+ const [isOpen, setIsOpen] = useState(false);
 
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
   return (
     <>
       {/* ABOUT HEADER WITH ROCKET AND FLOATING ICONS */}
@@ -99,6 +105,112 @@ const About = () => {
           Join Waitlist
         </Button>
       </Flex>
+      {/* Mobile Menu Icon (hidden when open) */}
+{!isOpen && (
+  <Box
+    display={{ base: "flex", md: "none" }}
+    position="absolute"
+    top={4}
+    right={4}
+    zIndex={20}
+    cursor="pointer"
+    w="3em"
+    h="3em"
+    alignItems="center"
+    justifyContent="center"
+  >
+    <Image
+      src="menu.png"
+      alt="Menu"
+      onClick={toggleDropdown}
+      w="100%"
+      h="100%"
+      objectFit="contain"
+    />
+  </Box>
+)}
+
+{/* Dropdown menu */}
+{isOpen && (
+  <MotionBox
+    position="absolute"
+    top={0}
+    left={0}
+    right={0}
+    zIndex={15}
+    bg="white"
+    initial={{ y: "-100%" }}
+    animate={{ y: 0 }}
+    exit={{ y: "-100%" }}
+    transition={{ type: "spring", stiffness: 100, damping: 20 }}
+    boxShadow="lg"
+    w="100%"
+    px={4}
+    py={4}
+  >
+    {/* Header inside dropdown */}
+    <Flex justify="space-between" mb={4} align="center">
+      <Box></Box>
+
+      {/* Cancel Icon */}
+      <Box cursor="pointer" onClick={toggleDropdown}>
+        <FiX size={24} />
+      </Box>
+    </Flex>
+
+    {/* Links */}
+    <VStack spacing={4} align="stretch">
+
+      <Link
+        href="/"
+        onClick={toggleDropdown}
+        _hover={{ bg: "#e0e0e0" }}
+        px={4}
+        py={2}
+        borderRadius="md"
+        transition="background-color 0.2s"
+      >
+        Home
+      </Link>
+      <Link
+        href="/#powerful-features"
+        onClick={toggleDropdown}
+        _hover={{ bg: "#e0e0e0" }}
+        px={4}
+        py={2}
+        borderRadius="md"
+        transition="background-color 0.2s"
+      >
+        Features
+      </Link>
+
+      {/* <Link
+        href="/about"
+        onClick={toggleDropdown}
+        _hover={{ bg: "#e0e0e0" }}
+        px={4}
+        py={2}
+        borderRadius="md"
+        transition="background-color 0.2s"
+      >
+        About Us
+      </Link> */}
+
+      <Link
+        href="/contact"
+        onClick={toggleDropdown}
+        _hover={{ bg: "#e0e0e0" }}
+        px={4}
+        py={2}
+        borderRadius="md"
+        transition="background-color 0.2s"
+      >
+        Contact Us
+      </Link>
+    </VStack>
+  </MotionBox>
+)}
+
       <Box
         bg="linear-gradient(to right bottom, #e5faeed8, #ffffff)"
         mb="7em"

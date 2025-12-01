@@ -20,11 +20,22 @@ import { MdEmail } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
 import { useRef, useState } from "react";
+import { FiX } from "react-icons/fi";
+import { motion } from "framer-motion";
+// import { IoEllipseSharp } from "react-icons/io5";
 
 
 const Contact = () => {
   const toast = useToast();
   const firstNameRef = useRef(null);
+   const [isOpen, setIsOpen] = useState(false);
+  
+    const toggleDropdown = () => {
+      setIsOpen(!isOpen);
+    };
+    
+    const MotionBox = motion(Box);
+    // const MotionIcon = motion(IoEllipseSharp);
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -128,6 +139,111 @@ const Contact = () => {
           </Link>
         </Flex>
       </Flex>
+       {/* Mobile Menu Icon (hidden when open) */}
+      {!isOpen && (
+        <Box
+          display={{ base: "flex", md: "none" }}
+          position="absolute"
+          top={4}
+          right={4}
+          zIndex={20}
+          cursor="pointer"
+          w="3em"
+          h="3em"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Image
+            src="menu.png"
+            alt="Menu"
+            onClick={toggleDropdown}
+            w="100%"
+            h="100%"
+            objectFit="contain"
+          />
+        </Box>
+      )}
+      
+      {/* Dropdown menu */}
+      {isOpen && (
+        <MotionBox
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          zIndex={15}
+          bg="white"
+          initial={{ y: "-100%" }}
+          animate={{ y: 0 }}
+          exit={{ y: "-100%" }}
+          transition={{ type: "spring", stiffness: 100, damping: 20 }}
+          boxShadow="lg"
+          w="100%"
+          px={4}
+          py={4}
+        >
+          {/* Header inside dropdown */}
+          <Flex justify="space-between" mb={4} align="center">
+            <Box></Box>
+      
+            {/* Cancel Icon */}
+            <Box cursor="pointer" onClick={toggleDropdown}>
+              <FiX size={24} />
+            </Box>
+          </Flex>
+      
+          {/* Links */}
+          <VStack spacing={4} align="stretch">
+            <Link
+              href="/"
+              onClick={toggleDropdown}
+              _hover={{ bg: "#e0e0e0" }}
+              px={4}
+              py={2}
+              borderRadius="md"
+              transition="background-color 0.2s"
+            >
+             Home
+            </Link>
+      
+            <Link
+              href="/about"
+              onClick={toggleDropdown}
+              _hover={{ bg: "#e0e0e0" }}
+              px={4}
+              py={2}
+              borderRadius="md"
+              transition="background-color 0.2s"
+            >
+              About Us
+            </Link>
+      
+            <Link
+              href="/work"
+              onClick={toggleDropdown}
+              _hover={{ bg: "#e0e0e0" }}
+              px={4}
+              py={2}
+              borderRadius="md"
+              transition="background-color 0.2s"
+            >
+              How it Works
+            </Link>
+      
+            {/* <Link
+              href="/contact"
+              onClick={toggleDropdown}
+              _hover={{ bg: "#e0e0e0" }}
+              px={4}
+              py={2}
+              borderRadius="md"
+              transition="background-color 0.2s"
+            >
+              Contact Us
+            </Link> */}
+          </VStack>
+        </MotionBox>
+      )}
          <Flex align="center" justify="center" mt="2em">
           <Flex
             align="center"
@@ -156,7 +272,7 @@ const Contact = () => {
         mx="auto"
         width="100%"
       >
-        <Heading fontSize={{ base: "4xl", md: "6xl" }}>Contact Us</Heading>
+        <Heading color={"gray.700"} fontSize={{ base: "6xl", md: "6xl" }}>Contact Us</Heading>
         <Text fontSize="lg" color="gray.600" maxW="37em" mx="auto" mt={4}>
           Have questions? We'd love to hear from you. Send us a message and
           we'll respond as soon as possible.
@@ -175,7 +291,7 @@ const Contact = () => {
       >
         {/* Contact Info */}
         <Box flex="1" mb={{ base: 8, md: 0 }} width="100%">
-          <Heading fontSize="2xl" mb={4}>
+          <Heading color={"gray.700"} fontSize={{ base: "4xl", md: "2xl" }} mb={4}>
             Let's Start a Conversation
           </Heading>
           <Text mb={6} maxW="30em" fontSize="lg" color="gray.700">
@@ -206,7 +322,7 @@ const Contact = () => {
                 <MdEmail size="24px" />
               </Box>
               <VStack align="start" spacing={0}>
-                <Text fontWeight="bold" fontSize="lg">
+                <Text fontWeight="bold" fontSize={{ base: "2xl", md: "lg" }}>
                   Email Us
                 </Text>
                 <Text color="#02A150" fontSize="md" fontWeight="bold">
@@ -237,7 +353,7 @@ const Contact = () => {
                 <FaPhoneAlt size="24px" />
               </Box>
               <VStack align="start" spacing={0}>
-                <Text fontWeight="bold" fontSize="lg">
+                <Text fontWeight="bold" fontSize={{ base: "2xl", md: "lg" }}>
                   Call Us
                 </Text>
                 <Text color="#02A150" fontSize="md" fontWeight="bold">
@@ -268,7 +384,7 @@ const Contact = () => {
                 <FaLocationDot size="24px" />
               </Box>
               <VStack align="start" spacing={0}>
-                <Text fontWeight="bold" fontSize="lg">
+                <Text fontWeight="bold"  fontSize={{ base: "2xl", md: "lg" }}>
                   Visit Us
                 </Text>
                 <Text color="#02A150" fontSize="md" fontWeight="bold">
@@ -379,31 +495,49 @@ const Contact = () => {
           </Stack>
         </Box>
       </Flex>
-
+ <Box
+        mb={12}
+        textAlign="center"
+        px={4}
+        maxW="1200px"
+        mx="auto"
+        width="100%"
+      >
+        <Heading color={"gray.700"} fontSize={{ base: "6xl", md: "6xl" }}>Contact Us</Heading>
+        <Text fontSize="lg" color="gray.600" maxW="37em" mx="auto" mt={4}>
+          Have questions? We'd love to hear from you. Send us a message and
+          we'll respond as soon as possible.
+        </Text>
+      </Box>
       {/* FAQ Section */}
       <Box
         bg="green.50"
         px={4}
         py={8}
-        maxW="1200px"
-        mx="auto"
         mb={16}
         overflowX="hidden"
       >
-        <Box textAlign="center" mb={6}>
-          <Heading fontSize={{ base: "2xl", md: "4xl" }}>
+     
+        <Box  textAlign="center"
+        px={4}
+        maxW="1200px"
+        mx="auto"
+        width="100%">
+          <Heading fontSize={{ base: "4xl", md: "4xl" }}>
             Frequently Asked Questions
           </Heading>
-          <Text fontSize="md" color="gray.600" mt={2}>
+          <Text  
+ fontSize={{ base: "xl", md: "md" }} 
+       w={{ base: "39em", md: "45em" }} color="gray.600" mt={2}>
             Quick answers to common questions. How do I start selling on
             Ahiaoma?
           </Text>
         </Box>
 
         {/* FAQ Items */}
-        <VStack spacing={4} align="center" px={2}>
+        <VStack gap={4} align="center" px={2}>
           <Box bg="white" p={6} rounded="md" shadow="md" w="full" maxW="50em">
-            <Heading fontSize="xl" mb={2}>
+            <Heading w={{ base: "9em", md: "15em" }} fontSize={{ base: "2xl", md: "xl" }} mb={2} color={"gray.600"}>
               How do I start on Ahiaoma?
             </Heading>
             <Text color={"gray"}>
@@ -412,8 +546,8 @@ const Contact = () => {
               process.
             </Text>
           </Box>
-          <Box bg="white" p={6} rounded="md" shadow="md" w="full" maxW="50em">
-            <Heading fontSize="xl" mb={2}>
+          <Box bg="white"  p={6} rounded="md" shadow="md" w="full" maxW="50em">
+            <Heading w={{ base: "14em", md: "15em" }} color={"gray.600"} fontSize={{ base: "2xl", md: "xl" }} mb={2}>
               What are the fees for sellers?
             </Heading>
             <Text  color={"gray"}>
@@ -422,7 +556,7 @@ const Contact = () => {
             </Text>
           </Box>
           <Box bg="white" p={6} rounded="md" shadow="md" w="full" maxW="50em">
-            <Heading fontSize="xl" mb={2}>
+            <Heading color={"gray.600"} fontSize={{ base: "2xl", md: "xl" }} mb={2}>
               How secure are payments on Ahiaoma?
             </Heading>
             <Text  color={"gray"}>
@@ -431,7 +565,7 @@ const Contact = () => {
             </Text>
           </Box>
           <Box bg="white" p={6} rounded="md" shadow="md" w="full" maxW="50em">
-            <Heading fontSize="xl" mb={2}>
+            <Heading color={"gray.600"} fontSize={{ base: "2xl", md: "xl" }} mb={2}>
               Do you deliver nationwide?
             </Heading>
             <Text  color={"gray"}>

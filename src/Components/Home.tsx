@@ -23,8 +23,9 @@ import { FaTruck, FaPhone } from "react-icons/fa6";
 import { IoEllipseSharp } from "react-icons/io5";
 import { IoRocketSharp } from "react-icons/io5";
 import { IoIosArrowRoundForward } from "react-icons/io";
-import { img } from "framer-motion/client";
 import { BiSolidMessageRounded } from "react-icons/bi";
+import { useState } from "react";
+import { FiX } from "react-icons/fi"; // Import X icon for close
 
 const MotionBox = motion(Box);
 const MotionIcon = motion(Icon);
@@ -35,10 +36,15 @@ const slowSpin = keyframes`
 `;
 
 const Home = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <>
       {/* Global style for smooth scroll */}
-
       <Box ml={{ base: "0", md: "0.3em" }} overflowX={"hidden"}>
         {/* Header Navigation */}
         <Flex
@@ -46,54 +52,40 @@ const Home = () => {
           justifyContent="space-between"
           p={4}
           bg="white"
-          boxShadow="md"
           borderRadius="md"
           flexWrap="wrap"
+          position="relative"
         >
           {/* Logo */}
           <Flex align="center" gap={2} w="9em" color="green.600">
             <Image src="ahiaoma_text_logo.png" alt="Logo" />
           </Flex>
 
+          {/* Desktop Menu */}
           <Flex gap={6} display={{ base: "none", md: "flex" }} flexWrap="wrap">
             <Link href="/#powerful-features">
-              <Text
-                _hover={{ color: "green.500" }}
-                fontWeight="semibold"
-                color="gray.700"
-              >
+              <Text _hover={{ color: "green.500" }} fontWeight="semibold" color="gray.700">
                 Features
               </Text>
             </Link>
             <Link href="/work">
-              <Text
-                _hover={{ color: "green.500" }}
-                fontWeight="semibold"
-                color="gray.700"
-              >
+              <Text _hover={{ color: "green.500" }} fontWeight="semibold" color="gray.700">
                 How It Works
               </Text>
             </Link>
             <Link href="/about">
-              <Text
-                _hover={{ color: "green.500" }}
-                fontWeight="semibold"
-                color="gray.700"
-              >
+              <Text _hover={{ color: "green.500" }} fontWeight="semibold" color="gray.700">
                 About Us
               </Text>
             </Link>
             <Link href="/contact">
-              <Text
-                _hover={{ color: "green.500" }}
-                fontWeight="semibold"
-                color="gray.700"
-              >
+              <Text _hover={{ color: "green.500" }} fontWeight="semibold" color="gray.700">
                 Contact Us
               </Text>
             </Link>
           </Flex>
 
+          {/* Join Waitlist Button */}
           <Button
             bg="green.600"
             rounded="full"
@@ -105,7 +97,110 @@ const Home = () => {
           >
             Join Waitlist
           </Button>
+
+         {/* Mobile Menu Icon (hidden when open) */}
+          {!isOpen && (
+            <Box
+              display={{ base: "block", md: "none" }}
+              position="absolute"
+              top={4}
+              right={4}
+              zIndex={20}
+              cursor="pointer"
+              w="3em"
+              h="3em"
+              // display="flex"
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Image
+                src="menu.png"
+                alt="Menu"
+                onClick={toggleDropdown}
+                w="100%"
+                h="100%"
+                objectFit="contain"
+              />
+            </Box>
+          )}
         </Flex>
+
+        {/* Dropdown menu with slide down animation, shown only when open */}
+        {isOpen && (
+          <MotionBox
+            position="absolute"
+            top={0}
+            left={0}
+            right={0}
+            zIndex={15}
+            bg="white"
+            initial={{ y: "-100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "-100%" }}
+            transition={{ type: "spring", stiffness: 100, damping: 20 }}
+            boxShadow="lg"
+            w="100%"
+            px={4}
+            py={4}
+          >
+            {/* Header inside dropdown with cancel icon */}
+            <Flex justify="space-between" mb={4} align="center">
+              {/* Optional: You can put a title here */}
+              <Box></Box>
+              {/* Cancel Icon */}
+              <Box cursor="pointer" onClick={toggleDropdown}>
+                <FiX size={24} />
+              </Box>
+            </Flex>
+            {/* Links */}
+            <VStack spacing={4} align="stretch">
+              <Link
+                href="/#powerful-features"
+                onClick={toggleDropdown}
+                _hover={{ bg: "#e0e0e0" }}
+                px={4}
+                py={2}
+                borderRadius="md"
+                transition="background-color 0.2s"
+              >
+                Features
+              </Link>
+              <Link
+                href="/work"
+                onClick={toggleDropdown}
+                _hover={{ bg: "#e0e0e0" }}
+                px={4}
+                py={2}
+                borderRadius="md"
+                transition="background-color 0.2s"
+              >
+                How it Works
+              </Link>
+              <Link
+                href="/about"
+                onClick={toggleDropdown}
+                _hover={{ bg: "#e0e0e0" }}
+                px={4}
+                py={2}
+                borderRadius="md"
+                transition="background-color 0.2s"
+              >
+                About Us
+              </Link>
+              <Link
+                href="/contact"
+                onClick={toggleDropdown}
+                _hover={{ bg: "#e0e0e0" }}
+                px={4}
+                py={2}
+                borderRadius="md"
+                transition="background-color 0.2s"
+              >
+                Contact Us
+              </Link>
+            </VStack>
+          </MotionBox>
+        )}
 
         {/* HERO SECTION */}
         <Flex
@@ -116,7 +211,6 @@ const Home = () => {
           py={{ base: 12, md: 20 }}
           px={{ base: 6, md: 10 }}
           position="relative"
-          // mb={"3em"}
         >
           {/* Left Section */}
           <Box flex="1">
@@ -156,7 +250,7 @@ const Home = () => {
               </MotionBox>
 
               <Heading
-                fontSize={{ base: "2xl", md: "7xl" }}
+                fontSize={{ base: "4xl", md: "7xl" }}
                 fontWeight="bolder"
                 color="black"
                 mt={"1em"}
@@ -168,17 +262,6 @@ const Home = () => {
                   Ahiaoma
                 </Box>
               </Heading>
-
-              {/* Add the "View Features" link here
-              <Link
-                href="#powerful-features"
-                _hover={{ textDecoration: "underline", color: "green.500" }}
-                fontWeight="semibold"
-                display="block"
-                mt={4}
-              >
-                View Features
-              </Link> */}
             </Box>
 
             <Text
@@ -201,16 +284,10 @@ const Home = () => {
               align="center"
               flexWrap="wrap"
             >
-              <Box
-                w={{ base: "8em", sm: "8em" }}
-                ml={{ base: "-15em", md: "-1em" }}
-              >
+              <Box w={{ base: "8em", sm: "8em" }} ml={{ base: "-15em", md: "-1em" }}>
                 <Image src="Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" />
               </Box>
-              <Box
-                w={{ base: "8em", sm: "8em" }}
-                ml={{ base: "-15em", md: "-1em" }}
-              >
+              <Box w={{ base: "8em", sm: "8em" }} ml={{ base: "-15em", md: "-1em" }}>
                 <Image src="google_playstore_images/GetItOnGooglePlay_Badge_Web_color_English.png" />
               </Box>
 
@@ -225,8 +302,6 @@ const Home = () => {
               >
                 Learn More
                 <Box ml={2}>
-                  {" "}
-                  {/* optional spacing */}
                   <IoIosArrowRoundForward size={20} color="white" />
                 </Box>
               </Button>
@@ -278,8 +353,6 @@ const Home = () => {
 
           {/* Right Section */}
           <Box
-            // flex="1"
-            // ml={{ base: "1em", md: "9em" }}
             position="relative"
             mt={{ base: "5em", md: "6em" }}
           >
@@ -348,7 +421,7 @@ const Home = () => {
           </Box>
         </Flex>
 
-        {/* Power Features Section with id */}
+        {/* Power Features Section */}
         <Box id="powerful-features" textAlign="center" mt={"4em"}>
           <Flex
             textAlign="center"
@@ -361,6 +434,7 @@ const Home = () => {
             py={"0.3em"}
             backgroundColor={"#effdffff"}
             width={"12em"}
+            marginX="auto"
           >
             <Box>
               <PiStarFourFill color="gold" />
@@ -423,7 +497,6 @@ const Home = () => {
               mt={"2em"}
               boxShadow="lg"
               w={"2.9em"}
-              // backgroundColor={"#4CAF50"}
             >
               <IoIosArrowRoundForward size={20} />
             </Box>
@@ -468,7 +541,6 @@ const Home = () => {
               mt={"2em"}
               boxShadow="lg"
               w={"2.9em"}
-              // backgroundColor={"#4CAF50"}
             >
               <IoIosArrowRoundForward size={20} />
             </Box>
@@ -513,7 +585,6 @@ const Home = () => {
               mt={"2em"}
               boxShadow="lg"
               w={"2.9em"}
-              // backgroundColor={"#4CAF50"}
             >
               <IoIosArrowRoundForward size={20} />
             </Box>
@@ -538,6 +609,7 @@ const Home = () => {
             py={"0.3em"}
             backgroundColor={"#c7f2f8ff"}
             width={"10em"}
+            // mx="auto"
           >
             <Box>
               <BiSolidMessageRounded color="white" />
@@ -568,7 +640,6 @@ const Home = () => {
               `"Ahiaoma transformed my business! The platform is intuitive and my sales have tripled."`,
               `"Fast delivery, secure payments, and amazing customer support. Best rising marketplace in Nigeria!"`,
               `"I found exactly what I needed at great prices. The shopping experience is seamless."`,
-              // `img: "url"`,
             ].map((quote, index) => (
               <Box
                 key={index}
@@ -610,10 +681,6 @@ const Home = () => {
                   <Text fontStyle="italic" color="gray.700">
                     {quote}
                   </Text>
-                  <Text>{img.length}</Text>
-                  {/* <Box>
-                     <Image src="chinedu.png"/>
-                  </Box> */}
                 </Box>
               </Box>
             ))}
@@ -637,18 +704,10 @@ const Home = () => {
                   <Image src="facebook.svg" boxSize="40px" borderRadius="50%" />
                 </Box>
                 <Box bg="#E1306C" borderRadius="50%" p={2}>
-                  <Image
-                    src="instagram.svg"
-                    boxSize="40px"
-                    borderRadius="50%"
-                  />
+                  <Image src="instagram.svg" boxSize="40px" borderRadius="50%" />
                 </Box>
                 <Box bg="#1DA1F2" borderRadius="50%" p={2}>
-                  <Image
-                    src="x_icon_twitter.svg"
-                    boxSize="40px"
-                    borderRadius="50%"
-                  />
+                  <Image src="x_icon_twitter.svg" boxSize="40px" borderRadius="50%" />
                 </Box>
               </Flex>
             </Box>
@@ -715,12 +774,11 @@ const Home = () => {
               </VStack>
             </Box>
           </Flex>
-
           <Box
             border={"1px"}
             ml={"3em"}
             w={{ base: "15em", md: "75em" }}
-            borderColor={" grey"}
+            borderColor={"grey"}
             h={"-0.1em"}
           />
           <Flex
