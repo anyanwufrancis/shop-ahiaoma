@@ -33,7 +33,21 @@ const Contact = () => {
     const toggleDropdown = () => {
       setIsOpen(!isOpen);
     };
-    
+     // Variants for container and items for staggered animation
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
     const MotionBox = motion(Box);
     // const MotionIcon = motion(IoEllipseSharp);
 
@@ -76,7 +90,12 @@ const Contact = () => {
   };
 
   return (
-    // Outer container to prevent overflow
+      <MotionBox
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+    {/* // Outer container to prevent overflow */}
     <Box overflowX="hidden" width="100%">
       {/* Responsive Header */}
       <Flex
@@ -84,7 +103,7 @@ const Contact = () => {
         justify="space-between"
         p={4}
         bg="white"
-        boxShadow="md"
+        // boxShadow="md"
         borderRadius="md"
         direction={{ base: "column", md: "row" }}
         maxW="1200px"
@@ -148,7 +167,7 @@ const Contact = () => {
           right={4}
           zIndex={20}
           cursor="pointer"
-          w="3em"
+          w="2em"
           h="3em"
           alignItems="center"
           justifyContent="center"
@@ -244,6 +263,7 @@ const Contact = () => {
           </VStack>
         </MotionBox>
       )}
+      <MotionBox variants={itemVariants}>
          <Flex align="center" justify="center" mt="2em">
           <Flex
             align="center"
@@ -252,7 +272,7 @@ const Contact = () => {
             px="1em"
             py="0.5em"
             bg="lightgreen"
-            borderRadius="1em"
+            borderRadius="3em"
             boxShadow="md"
           >
             <Box fontSize="xl" color="red.700">
@@ -263,7 +283,9 @@ const Contact = () => {
             </Text>
           </Flex>
         </Flex>
+          </MotionBox>
       {/* Main Heading and Description */}
+      <MotionBox variants={itemVariants}>
       <Box
         mb={12}
         textAlign="center"
@@ -278,6 +300,7 @@ const Contact = () => {
           we'll respond as soon as possible.
         </Text>
       </Box>
+      </MotionBox>
 
       {/* Content Section: Two Columns on large screens, stacked on mobile */}
       <Flex
@@ -289,6 +312,7 @@ const Contact = () => {
         mb={16}
         width="100%"
       >
+        <MotionBox variants={itemVariants}>
         {/* Contact Info */}
         <Box flex="1" mb={{ base: 8, md: 0 }} width="100%">
           <Heading color={"gray.700"} fontSize={{ base: "4xl", md: "2xl" }} mb={4}>
@@ -321,6 +345,7 @@ const Contact = () => {
               >
                 <MdEmail size="24px" />
               </Box>
+             
               <VStack align="start" spacing={0}>
                 <Text fontWeight="bold" fontSize={{ base: "2xl", md: "lg" }}>
                   Email Us
@@ -395,8 +420,9 @@ const Contact = () => {
             </Flex>
           </VStack>
         </Box>
-
+ </MotionBox>
         {/* Contact Form */}
+         <MotionBox variants={itemVariants}>
         <Box
           flex="1"
           bg="green.50"
@@ -494,7 +520,9 @@ const Contact = () => {
             </Button>
           </Stack>
         </Box>
+         </MotionBox>
       </Flex>
+       <MotionBox variants={itemVariants}>
  <Box
         mb={12}
         textAlign="center"
@@ -509,7 +537,9 @@ const Contact = () => {
           we'll respond as soon as possible.
         </Text>
       </Box>
+       </MotionBox>
       {/* FAQ Section */}
+       
       <Box
         bg="green.50"
         px={4}
@@ -517,7 +547,7 @@ const Contact = () => {
         mb={16}
         overflowX="hidden"
       >
-     
+     <MotionBox variants={itemVariants}>
         <Box  textAlign="center"
         px={4}
         maxW="1200px"
@@ -527,15 +557,19 @@ const Contact = () => {
             Frequently Asked Questions
           </Heading>
           <Text  
+          ml={{ base: "-0.5em", md: "13em" }}
  fontSize={{ base: "xl", md: "md" }} 
-       w={{ base: "39em", md: "45em" }} color="gray.600" mt={2}>
+       w={{ base: "18em", md: "45em" }} color="gray.600" mt={2}
+          >
             Quick answers to common questions. How do I start selling on
             Ahiaoma?
           </Text>
         </Box>
+         </MotionBox>
 
         {/* FAQ Items */}
         <VStack gap={4} align="center" px={2}>
+          <MotionBox variants={itemVariants}>
           <Box bg="white" p={6} rounded="md" shadow="md" w="full" maxW="50em">
             <Heading w={{ base: "9em", md: "15em" }} fontSize={{ base: "2xl", md: "xl" }} mb={2} color={"gray.600"}>
               How do I start on Ahiaoma?
@@ -546,6 +580,8 @@ const Contact = () => {
               process.
             </Text>
           </Box>
+          </MotionBox>
+          <MotionBox variants={itemVariants}>
           <Box bg="white"  p={6} rounded="md" shadow="md" w="full" maxW="50em">
             <Heading w={{ base: "14em", md: "15em" }} color={"gray.600"} fontSize={{ base: "2xl", md: "xl" }} mb={2}>
               What are the fees for sellers?
@@ -555,6 +591,8 @@ const Contact = () => {
               upfront fees or monthly charges to list your products.
             </Text>
           </Box>
+          </MotionBox>
+          <MotionBox variants={itemVariants}>
           <Box bg="white" p={6} rounded="md" shadow="md" w="full" maxW="50em">
             <Heading color={"gray.600"} fontSize={{ base: "2xl", md: "xl" }} mb={2}>
               How secure are payments on Ahiaoma?
@@ -564,6 +602,8 @@ const Contact = () => {
               use bank-level security to protect both buyers and sellers.
             </Text>
           </Box>
+          </MotionBox>
+          <MotionBox variants={itemVariants}>
           <Box bg="white" p={6} rounded="md" shadow="md" w="full" maxW="50em">
             <Heading color={"gray.600"} fontSize={{ base: "2xl", md: "xl" }} mb={2}>
               Do you deliver nationwide?
@@ -573,9 +613,11 @@ const Contact = () => {
               products reach customers anywhere in the country.
             </Text>
           </Box>
+          </MotionBox>
         </VStack>
       </Box>
     </Box>
+    </MotionBox>
   );
 };
 

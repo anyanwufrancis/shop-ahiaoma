@@ -35,6 +35,22 @@ const slowSpin = keyframes`
   to { transform: rotate(360deg); }
 `;
 
+// Variants for container and items for staggered animation
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.3,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
+
 const Home = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -44,8 +60,15 @@ const Home = () => {
 
   return (
     <>
+     <MotionBox
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
       {/* Global style for smooth scroll */}
       <Box ml={{ base: "0", md: "0.3em" }} overflowX={"hidden"}>
+       <Box id="header-nav">
+
         {/* Header Navigation */}
         <Flex
           alignItems="center"
@@ -86,6 +109,7 @@ const Home = () => {
           </Flex>
 
           {/* Join Waitlist Button */}
+          <MotionBox variants={itemVariants}>
           <Button
             bg="green.600"
             rounded="full"
@@ -97,7 +121,7 @@ const Home = () => {
           >
             Join Waitlist
           </Button>
-
+        </MotionBox>
          {/* Mobile Menu Icon (hidden when open) */}
           {!isOpen && (
             <Box
@@ -107,7 +131,7 @@ const Home = () => {
               right={4}
               zIndex={20}
               cursor="pointer"
-              w="3em"
+              w="2em"
               h="3em"
               // display="flex"
               alignItems="center"
@@ -203,6 +227,7 @@ const Home = () => {
         )}
 
         {/* HERO SECTION */}
+        <MotionBox variants={itemVariants}>
         <Flex
           gap={{ base: 10, md: 20 }}
           direction={{ base: "column", md: "row" }}
@@ -253,7 +278,7 @@ const Home = () => {
                 fontSize={{ base: "4xl", md: "7xl" }}
                 fontWeight="bolder"
                 color="black"
-                mt={"1em"}
+                mt={"-0.1em"}
                 w={{ base: "100%", md: "7em" }}
                 lineHeight="short"
               >
@@ -354,7 +379,7 @@ const Home = () => {
           {/* Right Section */}
           <Box
             position="relative"
-            mt={{ base: "5em", md: "6em" }}
+            mt={{ base: "5em", md: "8em" }}
           >
             <MotionBox
               rounded="1em"
@@ -420,8 +445,10 @@ const Home = () => {
             </MotionBox>
           </Box>
         </Flex>
-
+        </MotionBox>
+       </Box>
         {/* Power Features Section */}
+        <MotionBox variants={itemVariants}>
         <Box id="powerful-features" textAlign="center" mt={"4em"}>
           <Flex
             textAlign="center"
@@ -450,8 +477,10 @@ const Home = () => {
             Everything you need for a seamless shopping experience
           </Text>
         </Box>
+        </MotionBox>
 
         {/* Features cards */}
+        <MotionBox variants={itemVariants}>
         <Grid
           mt={10}
           gap={6}
@@ -590,8 +619,10 @@ const Home = () => {
             </Box>
           </Box>
         </Grid>
+        </MotionBox>
 
         {/* Testimonials Section */}
+        <MotionBox variants={itemVariants}>
         <Box
           bg="linear-gradient(to top right, #effdffff, #ffffff)"
           p={10}
@@ -686,117 +717,139 @@ const Home = () => {
             ))}
           </Grid>
         </Box>
+        </MotionBox>
 
-        {/* Footer */}
-        <Box bg="#000" color="#fff" p={8} fontFamily="Arial, sans-serif">
-          <Flex justify="space-between" flexWrap="wrap" maxW="1200px" mx="auto">
-            {/* About Section */}
-            <Box flex="1" minW="200px" mb={4}>
-              <Text fontWeight="bold" fontSize="xl" color="#00C853">
-                Ahiaoma
-              </Text>
-              <Text mt={2} fontSize="xl" color={"gray.400"}>
-                Nigeria's premier marketplace connecting millions of buyers and
-                sellers. Shop with confidence, sell with ease.
-              </Text>
-              <Flex mt={4} gap={3}>
-                <Box bg="#3b5998" borderRadius="50%" p={2}>
-                  <Image src="facebook.svg" boxSize="40px" borderRadius="50%" />
-                </Box>
-                <Box bg="#E1306C" borderRadius="50%" p={2}>
-                  <Image src="instagram.svg" boxSize="40px" borderRadius="50%" />
-                </Box>
-                <Box bg="#1DA1F2" borderRadius="50%" p={2}>
-                  <Image src="x_icon_twitter.svg" boxSize="40px" borderRadius="50%" />
-                </Box>
-              </Flex>
-            </Box>
+{/* Footer */}
+<MotionBox variants={itemVariants}>
+<Box bg="#000" color="#fff" p={4} fontFamily="Arial, sans-serif" mt={10}>
+  {/* Main Footer Content */}
+  <Flex
+    flexDirection={{ base: "column", md: "row" }}
+    maxW="1200px"
+    mx="auto"
+    justify={{ base: "center", md: "space-between" }}
+    align={{ base: "start", md: "center" }}
+    gap={8}
+  >
+    {/* About Section */}
+    <Box minW="200px" mb={{ base: 4, md: 0 }}>
+      <Text fontWeight="bold" fontSize="2xl" color="#00C853">
+        Ahiaoma
+      </Text>
+      <Text mt={2} fontSize="lg" w={{base:"19em",md:"29em"}} color={"gray.400"}>
+        Nigeria's premier marketplace connecting millions of buyers and
+        sellers. Shop with confidence, sell with ease.
+      </Text>
+    </Box>
 
-            {/* Quick Links */}
-            <Box ml={{ base: "0.1em", md: "3em" }} minW="200px" mb={4}>
-              <Text fontWeight="bold" fontSize="lg" mb={4}>
-                Quick Links
-              </Text>
-              <VStack align="start" gap={2}>
-                <Flex gap={"5px"} align={"center"}>
-                  <IoEllipseSharp size={"8px"} color="green" />
-                  <Link href="/about">
-                    <Text cursor="pointer" color={"gray.400"} fontSize="lg">
-                      About Us
-                    </Text>
-                  </Link>
-                </Flex>
-                <Flex gap={"5px"} align={"center"}>
-                  <IoEllipseSharp size={"8px"} color="green" />
-                  <Link href="/#powerful-features">
-                    <Text cursor="pointer" color={"gray.400"} fontSize="lg">
-                      How It Works
-                    </Text>
-                  </Link>
-                </Flex>
-                <Flex gap={"5px"} align={"center"}>
-                  <IoEllipseSharp size={"8px"} color="green" />
-                  <Text cursor="pointer" color={"gray.400"} fontSize="lg">
-                    Seller Center
-                  </Text>
-                </Flex>
-                <Flex gap={"5px"} align={"center"}>
-                  <IoEllipseSharp size={"8px"} color="green" />
-                  <Text cursor="pointer" color={"gray.400"} fontSize="lg">
-                    Help Center
-                  </Text>
-                </Flex>
-              </VStack>
-            </Box>
-
-            {/* Contact */}
-            <Box ml={{ base: "0.1em", md: "9em" }} minW="200px" mb={4}>
-              <Text fontWeight="bold" fontSize="lg" mb={4}>
-                Contact
-              </Text>
-              <VStack align="start" gap={2}>
-                <HStack align="center" gap={2}>
-                  <Box bg="#4CAF50" p={2} borderRadius="md" h={"2.2em"}>
-                    <Icon as={MdOutlineEmail} color="#fff" boxSize={4} />
-                  </Box>
-                  <Text fontSize="lg" color={"gray.400"}>
-                    ahiaoma37@gmail.com
-                  </Text>
-                </HStack>
-                <HStack align="center" gap={2}>
-                  <Box bg="#2196F3" p={2} borderRadius="md" h={"2.2em"}>
-                    <Icon as={FaPhone} color="#fff" boxSize={4} />
-                  </Box>
-                  <Text fontSize="lg" color={"gray.400"}>
-                    +234 907 940 5147
-                  </Text>
-                </HStack>
-              </VStack>
-            </Box>
-          </Flex>
-          <Box
-            border={"1px"}
-            ml={"3em"}
-            w={{ base: "15em", md: "75em" }}
-            borderColor={"grey"}
-            h={"-0.1em"}
-          />
-          <Flex
-            fontSize={"xs"}
-            color={"gray.500"}
-            direction={{ base: "row", md: "row" }}
-            gap={"2em"}
-            mt={"2em"}
-          >
-            <Text ml={"3.5em"} fontSize="sm">
-              © 2025 Ahiaoma. All rights reserved.
+    {/* Quick Links */}
+    <Box minW="200px" mb={{ base: 4, md: 0 }}>
+      <Text fontWeight="bold" fontSize="lg" mb={4}>
+        Quick Links
+      </Text>
+      <VStack align="start" gap={2} >
+        <Flex gap="5px" align="center"  _hover={{ transform: "scale(1.05)", color: "#48e985ff" }}
+                  transition="transform 0.2s, background-color 0.2s">
+          <IoEllipseSharp size="8px" color="green" />
+          <Link href="/about">
+            <Text cursor="pointer" color="gray.400" fontSize="lg">
+              About Us
             </Text>
-            <Text ml={"53em"}>Privacy Policy</Text>
-            <Text>Terms of Policy</Text>
-            <Text>Cookies and Policy</Text>
-          </Flex>
-        </Box>
+          </Link>
+        </Flex>
+        <Flex gap="5px" align="center">
+          <IoEllipseSharp size="8px" color="green" />
+          <Link href="/#powerful-features">
+            <Text cursor="pointer" color="gray.400" fontSize="lg">
+              How It Works
+            </Text>
+          </Link>
+        </Flex>
+        <Flex gap="5px" align="center">
+          <IoEllipseSharp size="8px" color="green" />
+          <Link href="/#header-nav">
+          <Text cursor="pointer" color="gray.400" fontSize="lg">
+            Seller Center
+          </Text>
+          </Link>
+        </Flex>
+        <Flex gap="5px" align="center">
+          <IoEllipseSharp size="8px" color="green" />
+          <Link href="/#header-nav">
+          <Text cursor="pointer" color="gray.400" fontSize="lg">
+            Help Center
+          </Text>
+          </Link>
+        </Flex>
+      </VStack>
+    </Box>
+
+    {/* Contact */}
+    <Box minW="200px" mb={{ base: 4, md: 0 }}>
+      <Text fontWeight="bold" fontSize="lg" mb={4}>
+        Contact
+      </Text>
+      <VStack align="start" gap={2}>
+        <HStack align="center" gap={2}>
+          <Box bg="#4CAF50" p={2} borderRadius="md" h="2.2em">
+            <Icon as={MdOutlineEmail} color="#fff" boxSize={4} />
+          </Box>
+          <Text fontSize="lg" color="gray.400">
+            ahiaoma37@gmail.com
+          </Text>
+        </HStack>
+        <HStack align="center" gap={2}>
+          <Box bg="#2196F3" p={2} borderRadius="md" h="2.2em">
+            <Icon as={FaPhone} color="#fff" boxSize={4} />
+          </Box>
+          <Text fontSize="lg" color="gray.400">
+            +234 907 940 5147
+          </Text>
+        </HStack>
+      </VStack>
+    </Box>
+  </Flex>
+<MotionBox variants={itemVariants}>
+  {/* Divider */}
+  <Box border="1px"  borderColor="gray.600" my={4} w="100%" />
+
+  {/* Bottom row for privacy/terms, responsive */}
+  <Flex
+    flexDirection={{ base: "column", md: "row" }}
+    align="center"
+    justify="space-between"
+    // maxW="1200px"
+    mx="auto"
+    px={4}
+    gap={{ base: 2, md: 0 }}
+  >
+    <Text fontSize="sm" ml={{base:"-1em",md:"-3em"}} w={{base:"24em", md:"29em"}} textAlign="center">
+      © 2025 Ahiaoma. All rights reserved.
+    </Text>
+    {/* Privacy and other links */}
+    <Flex
+      gap={4}
+      justify={{ base: "center", md: "flex-end" }}
+      w="100%"
+      mt={{ base: 2, md: 0 }}
+      flexWrap="wrap"
+    >
+      <Text cursor="pointer" fontSize="sm">
+        Privacy Policy
+      </Text>
+      <Text cursor="pointer" fontSize="sm">
+        Terms of Service
+      </Text>
+      <Text cursor="pointer" fontSize="sm">
+        Cookies Policy
+      </Text>
+    </Flex>
+  </Flex>
+  </MotionBox>
+</Box>
+ </MotionBox>
       </Box>
+       </MotionBox>
     </>
   );
 };
