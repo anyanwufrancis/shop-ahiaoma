@@ -57,7 +57,13 @@ const Home = () => {
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
+ // State hooks for each card hover
+  const [hoverCard1, setHoverCard1] = useState(false);
+  const [hoverCard2, setHoverCard2] = useState(false);
+  const [hoverCard3, setHoverCard3] = useState(false);
 
+  // Background colors for arrows matching each card
+  const arrowBgColors = ["#4CAF50", "#2196F3", "#9C27B0"]; // Green, Blue, Purple
   return (
     <>
      <MotionBox
@@ -482,143 +488,164 @@ const Home = () => {
         {/* Features cards */}
         <MotionBox variants={itemVariants}>
         <Grid
-          mt={10}
-          gap={6}
-          gridTemplateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }}
-          px={{ base: 4, md: 10 }}
+      mt={10}
+      gap={6}
+      gridTemplateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }}
+      px={{ base: 4, md: 10 }}
+    >
+      {/* Card 1 */}
+      <Box
+        bg="white"
+        borderRadius="1em"
+        boxShadow="lg"
+        p="20px"
+        _hover={{ transform: "scale(1.05)", bg: "#f0fff0" }}
+        transition="transform 0.2s, background-color 0.2s"
+        onMouseEnter={() => setHoverCard1(true)}
+        onMouseLeave={() => setHoverCard1(false)}
+        position="relative"
+      >
+        <Box
+          mb="10px"
+          backgroundColor={"#4CAF50"}
+          w={"2em"}
+          shadow={"md"}
+          rounded={"0.4em"}
+          py={"0.4em"}
+          px={"0.5em"}
+          color="white"
+          fontSize="30px"
         >
-          {/* Card 1 */}
+          <MdOutlineShield />
+        </Box>
+        <Text fontWeight="bold" fontSize="1.9em" mb="4px">
+          Secure Payment
+        </Text>
+        <Text fontSize="2xl" fontWeight={"normal"} color="gray.600">
+          Bank-level encryption and fraud protection for every transaction
+        </Text>
+        {/* Show arrow on hover */}
+        {hoverCard1 && (
           <Box
-            bg="white"
-            borderRadius="1em"
+            position="absolute"
+            top="90%"
+            right="1em"
+            transform="translateY(-50%)"
+            bg={arrowBgColors[0]}
+            p={2}
+            borderRadius="full"
             boxShadow="lg"
-            p="20px"
-            _hover={{ transform: "scale(1.05)", bg: "#f0fff0" }}
-            transition="transform 0.2s, background-color 0.2s"
+            cursor="pointer"
+            transition="background-color 0.2s"
+            _hover={{ bg: "green.600" }}
           >
-            <Box
-              mb="10px"
-              backgroundColor={"#4CAF50"}
-              w={"2em"}
-              shadow={"md"}
-              rounded={"0.4em"}
-              py={"0.4em"}
-              px={"0.5em"}
-              color="white"
-              fontSize="30px"
-            >
-              <MdOutlineShield />
-            </Box>
-            <Text fontWeight="bold" fontSize="1.9em" mb="4px">
-              Secure Payment
-            </Text>
-            <Text fontSize="2xl" fontWeight={"normal"} color="gray.600">
-              Bank-level encryption and fraud protection for every transaction
-            </Text>
-            <Box
-              ml={"19em"}
-              _hover={{ transform: "scale(1.05)", bg: "#e0f7fa" }}
-              transition="transform 0.2s, background-color 0.2s"
-              bg="green.500"
-              color="white"
-              rounded="full"
-              p="0.7em"
-              mt={"2em"}
-              boxShadow="lg"
-              w={"2.9em"}
-            >
-              <IoIosArrowRoundForward size={20} />
-            </Box>
+            <IoIosArrowRoundForward size={20} color="white" />
           </Box>
+        )}
+      </Box>
 
-          {/* Card 2 */}
+      {/* Card 2 */}
+      <Box
+        bg="white"
+        borderRadius="1em"
+        boxShadow="lg"
+        p="20px"
+        _hover={{ transform: "scale(1.05)", bg: "#e0f7fa" }}
+        transition="transform 0.2s, background-color 0.2s"
+        onMouseEnter={() => setHoverCard2(true)}
+        onMouseLeave={() => setHoverCard2(false)}
+        position="relative"
+      >
+        <Box
+          mb="10px"
+          backgroundColor={"#2196F3"}
+          w={"2em"}
+          shadow={"md"}
+          rounded={"0.4em"}
+          py={"0.4em"}
+          px={"0.5em"}
+          color="white"
+          fontSize="30px"
+        >
+          <HiMiniShoppingBag />
+        </Box>
+        <Text fontWeight="bold" fontSize="1.9em" mb="4px">
+          Wide Selection
+        </Text>
+        <Text fontSize="2xl" color="gray.600">
+          Millions of products from verified sellers across Nigeria
+        </Text>
+        {/* Show arrow on hover */}
+        {hoverCard2 && (
           <Box
-            bg="white"
-            borderRadius="1em"
+            position="absolute"
+            top="90%"
+            right="1em"
+            transform="translateY(-50%)"
+            bg={arrowBgColors[1]}
+            p={2}
+            borderRadius="full"
             boxShadow="lg"
-            p="20px"
-            _hover={{ transform: "scale(1.05)", bg: "#e0f7fa" }}
-            transition="transform 0.2s, background-color 0.2s"
+            cursor="pointer"
+            transition="background-color 0.2s"
+            _hover={{ bg: "blue.600" }}
           >
-            <Box
-              mb="10px"
-              backgroundColor={"#2196F3"}
-              w={"2em"}
-              shadow={"md"}
-              rounded={"0.4em"}
-              py={"0.4em"}
-              px={"0.5em"}
-              color="white"
-              fontSize="30px"
-            >
-              <HiMiniShoppingBag />
-            </Box>
-            <Text fontWeight="bold" fontSize="1.9em" mb="4px">
-              Wide Selection
-            </Text>
-            <Text fontSize="2xl" color="gray.600">
-              Millions of products from verified sellers across Nigeria
-            </Text>
-            <Box
-              ml={"19em"}
-              _hover={{ transform: "scale(1.05)", bg: "#e0f7fa" }}
-              transition="transform 0.2s, background-color 0.2s"
-              bg="green.500"
-              color="white"
-              rounded="full"
-              p="0.7em"
-              mt={"2em"}
-              boxShadow="lg"
-              w={"2.9em"}
-            >
-              <IoIosArrowRoundForward size={20} />
-            </Box>
+            <IoIosArrowRoundForward size={20} color="white" />
           </Box>
+        )}
+      </Box>
 
-          {/* Card 3 */}
+      {/* Card 3 */}
+      <Box
+        bg="white"
+        borderRadius="1em"
+        boxShadow="lg"
+        p="20px"
+        _hover={{ transform: "scale(1.05)", bg: "#f3e5f5" }}
+        transition="transform 0.2s, background-color 0.2s"
+        onMouseEnter={() => setHoverCard3(true)}
+        onMouseLeave={() => setHoverCard3(false)}
+        position="relative"
+      >
+        <Box
+          mb="10px"
+          backgroundColor={"#9C27B0"}
+          w={"2em"}
+          shadow={"md"}
+          rounded={"0.4em"}
+          py={"0.4em"}
+          px={"0.5em"}
+          color="white"
+          fontSize="30px"
+        >
+          <FaTruck />
+        </Box>
+        <Text fontWeight="bold" fontSize="1.9em" mb="4px">
+          Fast Delivery
+        </Text>
+        <Text fontSize="2xl" color="gray.600">
+          Same-day delivery in major cities, nationwide coverage
+        </Text>
+        {/* Show arrow on hover */}
+        {hoverCard3 && (
           <Box
-            bg="white"
-            borderRadius="1em"
+            position="absolute"
+            top="90%"
+            right="1em"
+            transform="translateY(-50%)"
+            bg={arrowBgColors[2]}
+            p={2}
+            borderRadius="full"
             boxShadow="lg"
-            p="20px"
-            _hover={{ transform: "scale(1.05)", bg: "#f3e5f5" }}
-            transition="transform 0.2s, background-color 0.2s"
+            cursor="pointer"
+            transition="background-color 0.2s"
+            _hover={{ bg: "purple.600" }}
           >
-            <Box
-              mb="10px"
-              backgroundColor={"#9C27B0"}
-              w={"2em"}
-              shadow={"md"}
-              rounded={"0.4em"}
-              py={"0.4em"}
-              px={"0.5em"}
-              color="white"
-              fontSize="30px"
-            >
-              <FaTruck />
-            </Box>
-            <Text fontWeight="bold" fontSize="1.9em" mb="4px">
-              Fast Delivery
-            </Text>
-            <Text fontSize="2xl" color="gray.600">
-              Same-day delivery in major cities, nationwide coverage
-            </Text>
-            <Box
-              ml={"19em"}
-              _hover={{ transform: "scale(1.05)", bg: "#e0f7fa" }}
-              transition="transform 0.2s, background-color 0.2s"
-              bg="green.500"
-              color="white"
-              rounded="full"
-              p="0.7em"
-              mt={"2em"}
-              boxShadow="lg"
-              w={"2.9em"}
-            >
-              <IoIosArrowRoundForward size={20} />
-            </Box>
+            <IoIosArrowRoundForward size={20} color="white" />
           </Box>
-        </Grid>
+        )}
+      </Box>
+    </Grid>
         </MotionBox>
 
         {/* Testimonials Section */}
