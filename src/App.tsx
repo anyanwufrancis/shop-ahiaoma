@@ -1,6 +1,8 @@
-import { ChakraProvider, Box, Flex, Image } from "@chakra-ui/react";
 import {
-  BrowserRouter as Router,
+  //  ChakraProvider,
+    Box, Flex, Image } from "@chakra-ui/react";
+import {
+ Router,
   Routes,
   Route,
   useLocation,
@@ -65,11 +67,11 @@ function AppContent() {
 
 function App() {
   return (
-    <ChakraProvider>
-      <Router>
+    // <ChakraProvider>
+      // <Router>
         <AppContent />
-      </Router>
-    </ChakraProvider>
+      // </Router>
+    // {/* </ChakraProvider> */}
   );
 }
 
