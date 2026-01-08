@@ -5,27 +5,28 @@ import {
   Image,
   Button,
   Text,
-  Link,
+  Icon,
   Heading,
   Grid,
   HStack,
-  Icon,
-  VStack,
+
 } from "@chakra-ui/react";
 import { PiStarFourFill } from "react-icons/pi";
 import { IoCheckmarkSharp } from "react-icons/io5";
 import { motion } from "framer-motion";
 import { FaStar, FaQuoteLeft } from "react-icons/fa6";
 import { keyframes } from "@emotion/react";
-import { MdOutlineShield, MdOutlineEmail } from "react-icons/md";
+import { MdOutlineShield } from "react-icons/md";
 import { HiMiniShoppingBag } from "react-icons/hi2";
-import { FaTruck, FaPhone } from "react-icons/fa6";
+import { FaTruck,  } from "react-icons/fa6";
 import { IoEllipseSharp } from "react-icons/io5";
 import { IoRocketSharp } from "react-icons/io5";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { BiSolidMessageRounded } from "react-icons/bi";
 import { useState } from "react";
-import { FiX } from "react-icons/fi"; // Import X icon for close
+// import { FiX } from "react-icons/fi"; // Import X icon for close
+import Header from "./shared/header";
+import Footer from "./shared/footer";
 
 const MotionBox = motion(Box);
 const MotionIcon = motion(Icon);
@@ -52,11 +53,11 @@ const itemVariants = {
 };
 
 const Home = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
 
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
+  // const toggleDropdown = () => {
+  //   setIsOpen(!isOpen);
+  // };
  // State hooks for each card hover
   const [hoverCard1, setHoverCard1] = useState(false);
   const [hoverCard2, setHoverCard2] = useState(false);
@@ -75,162 +76,7 @@ const Home = () => {
       <Box ml={{ base: "0", md: "0.3em" }} overflowX={"hidden"}>
        <Box id="header-nav">
 
-        {/* Header Navigation */}
-        <Flex
-          alignItems="center"
-          justifyContent="space-between"
-          p={4}
-          bg="white"
-          borderRadius="md"
-          flexWrap="wrap"
-          position="relative"
-        >
-          {/* Logo */}
-          <Flex align="center" gap={2} w="9em" color="green.600">
-            <Image src="ahiaoma_text_logo.png" alt="Logo" />
-          </Flex>
-
-          {/* Desktop Menu */}
-          <Flex gap={6} display={{ base: "none", md: "flex" }} flexWrap="wrap">
-            <Link href="/#powerful-features">
-              <Text _hover={{ color: "green.500" }} fontWeight="semibold" color="gray.700">
-                Features
-              </Text>
-            </Link>
-            <Link href="/work">
-              <Text _hover={{ color: "green.500" }} fontWeight="semibold" color="gray.700">
-                How It Works
-              </Text>
-            </Link>
-            <Link href="/about">
-              <Text _hover={{ color: "green.500" }} fontWeight="semibold" color="gray.700">
-                About Us
-              </Text>
-            </Link>
-            <Link href="/contact">
-              <Text _hover={{ color: "green.500" }} fontWeight="semibold" color="gray.700">
-                Contact Us
-              </Text>
-            </Link>
-          </Flex>
-
-          {/* Join Waitlist Button */}
-          <MotionBox variants={itemVariants}>
-          <Button
-            bg="green.600"
-            rounded="full"
-            px={4}
-            py={2}
-            color="white"
-            _hover={{ bg: "green.700" }}
-            display={{ base: "none", md: "block" }}
-          >
-            Join Waitlist
-          </Button>
-        </MotionBox>
-         {/* Mobile Menu Icon (hidden when open) */}
-          {!isOpen && (
-            <Box
-              display={{ base: "block", md: "none" }}
-              position="absolute"
-              top={4}
-              right={4}
-              zIndex={20}
-              cursor="pointer"
-              w="2em"
-              h="3em"
-              // display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Image
-                src="menu.png"
-                alt="Menu"
-                onClick={toggleDropdown}
-                w="100%"
-                h="100%"
-                objectFit="contain"
-              />
-            </Box>
-          )}
-        </Flex>
-
-        {/* Dropdown menu with slide down animation, shown only when open */}
-        {isOpen && (
-          <MotionBox
-            position="absolute"
-            top={0}
-            left={0}
-            right={0}
-            zIndex={15}
-            bg="white"
-            initial={{ y: "-100%" }}
-            animate={{ y: 0 }}
-            exit={{ y: "-100%" }}
-            transition={{ type: "spring", stiffness: 100, damping: 20 }}
-            boxShadow="lg"
-            w="100%"
-            px={4}
-            py={4}
-          >
-            {/* Header inside dropdown with cancel icon */}
-            <Flex justify="space-between" mb={4} align="center">
-              {/* Optional: You can put a title here */}
-              <Box></Box>
-              {/* Cancel Icon */}
-              <Box cursor="pointer" onClick={toggleDropdown}>
-                <FiX size={24} />
-              </Box>
-            </Flex>
-            {/* Links */}
-            <VStack spacing={4} align="stretch">
-              <Link
-                href="/#powerful-features"
-                onClick={toggleDropdown}
-                _hover={{ bg: "#e0e0e0" }}
-                px={4}
-                py={2}
-                borderRadius="md"
-                transition="background-color 0.2s"
-              >
-                Features
-              </Link>
-              <Link
-                href="/work"
-                onClick={toggleDropdown}
-                _hover={{ bg: "#e0e0e0" }}
-                px={4}
-                py={2}
-                borderRadius="md"
-                transition="background-color 0.2s"
-              >
-                How it Works
-              </Link>
-              <Link
-                href="/about"
-                onClick={toggleDropdown}
-                _hover={{ bg: "#e0e0e0" }}
-                px={4}
-                py={2}
-                borderRadius="md"
-                transition="background-color 0.2s"
-              >
-                About Us
-              </Link>
-              <Link
-                href="/contact"
-                onClick={toggleDropdown}
-                _hover={{ bg: "#e0e0e0" }}
-                px={4}
-                py={2}
-                borderRadius="md"
-                transition="background-color 0.2s"
-              >
-                Contact Us
-              </Link>
-            </VStack>
-          </MotionBox>
-        )}
+         <Header />
 
         {/* HERO SECTION */}
         <MotionBox variants={itemVariants}>
@@ -745,136 +591,8 @@ const Home = () => {
           </Grid>
         </Box>
         </MotionBox>
+            <Footer />
 
-{/* Footer */}
-<MotionBox variants={itemVariants}>
-<Box bg="#000" color="#fff" p={4} fontFamily="Arial, sans-serif" mt={10}>
-  {/* Main Footer Content */}
-  <Flex
-    flexDirection={{ base: "column", md: "row" }}
-    maxW="1200px"
-    mx="auto"
-    justify={{ base: "center", md: "space-between" }}
-    align={{ base: "start", md: "center" }}
-    gap={8}
-  >
-    {/* About Section */}
-    <Box minW="200px" mb={{ base: 4, md: 0 }}>
-      <Text fontWeight="bold" fontSize="2xl" color="#00C853">
-        Ahiaoma
-      </Text>
-      <Text mt={2} fontSize="lg" w={{base:"19em",md:"29em"}} color={"gray.400"}>
-        Nigeria's premier marketplace connecting millions of buyers and
-        sellers. Shop with confidence, sell with ease.
-      </Text>
-    </Box>
-
-    {/* Quick Links */}
-    <Box minW="200px" mb={{ base: 4, md: 0 }}>
-      <Text fontWeight="bold" fontSize="lg" mb={4}>
-        Quick Links
-      </Text>
-      <VStack align="start" gap={2} >
-        <Flex gap="5px" align="center"  _hover={{ transform: "scale(1.05)", color: "#48e985ff" }}
-                  transition="transform 0.2s, background-color 0.2s">
-          <IoEllipseSharp size="8px" color="green" />
-          <Link href="/about">
-            <Text cursor="pointer" color="gray.400" fontSize="lg">
-              About Us
-            </Text>
-          </Link>
-        </Flex>
-        <Flex gap="5px" align="center">
-          <IoEllipseSharp size="8px" color="green" />
-          <Link href="/#powerful-features">
-            <Text cursor="pointer" color="gray.400" fontSize="lg">
-              How It Works
-            </Text>
-          </Link>
-        </Flex>
-        <Flex gap="5px" align="center">
-          <IoEllipseSharp size="8px" color="green" />
-          <Link href="/#header-nav">
-          <Text cursor="pointer" color="gray.400" fontSize="lg">
-            Seller Center
-          </Text>
-          </Link>
-        </Flex>
-        <Flex gap="5px" align="center">
-          <IoEllipseSharp size="8px" color="green" />
-          <Link href="/#header-nav">
-          <Text cursor="pointer" color="gray.400" fontSize="lg">
-            Help Center
-          </Text>
-          </Link>
-        </Flex>
-      </VStack>
-    </Box>
-
-    {/* Contact */}
-    <Box minW="200px" mb={{ base: 4, md: 0 }}>
-      <Text fontWeight="bold" fontSize="lg" mb={4}>
-        Contact
-      </Text>
-      <VStack align="start" gap={2}>
-        <HStack align="center" gap={2}>
-          <Box bg="#4CAF50" p={2} borderRadius="md" h="2.2em">
-            <Icon as={MdOutlineEmail} color="#fff" boxSize={4} />
-          </Box>
-          <Text fontSize="lg" color="gray.400">
-            ahiaoma37@gmail.com
-          </Text>
-        </HStack>
-        <HStack align="center" gap={2}>
-          <Box bg="#2196F3" p={2} borderRadius="md" h="2.2em">
-            <Icon as={FaPhone} color="#fff" boxSize={4} />
-          </Box>
-          <Text fontSize="lg" color="gray.400">
-            +234 907 940 5147
-          </Text>
-        </HStack>
-      </VStack>
-    </Box>
-  </Flex>
-<MotionBox variants={itemVariants}>
-  {/* Divider */}
-  <Box border="1px"  borderColor="gray.600" my={4} w="100%" />
-
-  {/* Bottom row for privacy/terms, responsive */}
-  <Flex
-    flexDirection={{ base: "column", md: "row" }}
-    align="center"
-    justify="space-between"
-    // maxW="1200px"
-    mx="auto"
-    px={4}
-    gap={{ base: 2, md: 0 }}
-  >
-    <Text fontSize="sm" ml={{base:"-1em",md:"-3em"}} w={{base:"24em", md:"29em"}} textAlign="center">
-      © 2025 Ahiaoma. All rights reserved.
-    </Text>
-    {/* Privacy and other links */}
-    <Flex
-      gap={4}
-      justify={{ base: "center", md: "flex-end" }}
-      w="100%"
-      mt={{ base: 2, md: 0 }}
-      flexWrap="wrap"
-    >
-      <Text cursor="pointer" fontSize="sm">
-        Privacy Policy
-      </Text>
-      <Text cursor="pointer" fontSize="sm">
-        Terms of Service
-      </Text>
-      <Text cursor="pointer" fontSize="sm">
-        Cookies Policy
-      </Text>
-    </Flex>
-  </Flex>
-  </MotionBox>
-</Box>
- </MotionBox>
       </Box>
        </MotionBox>
     </>
