@@ -39,7 +39,7 @@ const Header: React.FC = () => {
         align="center"
         justify="space-between"
         p={4}
-        boxShadow="lg"
+        // boxShadow="lg"
         flexWrap="wrap"
         position="relative"
       >
@@ -100,7 +100,7 @@ const Header: React.FC = () => {
           <Box
             display={{ base: "block", md: "none" }}
             position="absolute"
-            top={4}
+            top={1}
             right={4}
             zIndex={20}
             cursor="pointer"
