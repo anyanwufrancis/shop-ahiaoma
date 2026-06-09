@@ -1,201 +1,226 @@
-import { useState } from "react";
-import { Box, Flex, Image, Link as ChakraLink, Button } from "@chakra-ui/react";
-import { FiX } from "react-icons/fi";
-import { motion } from "framer-motion";
-import { Link as RouterLink } from "react-router-dom";
+import {
+  Box,
+  Flex,
+  HStack,
+  Link,
+  IconButton,
+  VStack,
+  useDisclosure,
+  Button,
+  Container,
+  Image,
+  Collapse,
+} from "@chakra-ui/react";
+import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import { Link as RouterLink, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import type { FC } from "react";
 
-const MotionBox = motion(Box);
-
-
-interface NavItem {
-  label: string;
+interface NavLink {
+  name: string;
   path: string;
 }
 
-const Header: React.FC = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const toggleDropdown = (): void => setIsOpen(!isOpen);
+const Header: FC = () => {
+  const { isOpen, onToggle, onClose } = useDisclosure();
+  const location = useLocation();
+  const [scrolled, setScrolled] = useState<boolean>(false);
 
-  const navItems: NavItem[] = [
-    { label: "Features", path: "#powerful-features" },
-    { label: "How it Works", path: "/work" },
-    { label: "About Us", path: "/about" },
-    { label: "Contact Us", path: "/contact" },
+  const navLinks: NavLink[] = [
+    { name: "Home", path: "/" },
+    { name: "How It Works", path: "/work" },
+    { name: "About", path: "/about" },
+    { name: "Contact", path: "/contact" },
+    // {name: "Download", path: "/download"},
   ];
+const isActive = (path: string): boolean => location.pathname === path;
 
-  const handleAnchorClick = (path: string): void => {
-    const element = document.querySelector(path);
-    if (element) {
-      window.scrollTo({
-        top: (element as HTMLElement).offsetTop - 80, // adjust for sticky header
-        behavior: "smooth",
-      });
+  // Scroll detection for header blur
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Prevent background scrolling when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
     }
-  };
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
 
   return (
-    <Box position="relative" w="100%" bg="white" zIndex={50}>
-      <Flex
-        align="center"
-        justify="space-between"
-        p={4}
-        // boxShadow="lg"
-        flexWrap="wrap"
-        position="relative"
-      >
-        {/* Logo */}
-        <Flex align="center" gap={2} w="9em">
-          <Box>
-            <Image src="ahiaoma_text_logo.png" alt="Logo" />
-          </Box>
-        </Flex>
+    <Box
+      as="header"
+      position="sticky"
+      top={0}
+      zIndex={50}
+      bg={scrolled ? "whiteAlpha.900" : "white"}
+      backdropFilter={scrolled ? "blur(12px)" : "none"}
+      boxShadow={scrolled ? "sm" : "none"}
+      borderBottom="1px solid"
+      borderColor={scrolled ? "gray.100" : "transparent"}
+      transition="all 0.3s ease"
+    >
+      <Container maxW={{ base: "7xl", xl: "8xl" }} px={4}>
+        <Flex h={16} alignItems="center" justifyContent="space-between">
+          {/* Logo */}
+          <Image
+            src="ahiaoma_text_logo.png"
+            alt="Ahiaoma Logo"
+            maxW="160px"
+            objectFit="contain"
+          />
 
-        {/* Desktop Menu */}
-        <Flex gap={6} align="center" display={{ base: "none", md: "flex" }}>
-          {navItems.map((item) =>
-            item.path.startsWith("#") ? (
-              <ChakraLink
-                key={item.label}
-                href={item.path}
-                _hover={{ textDecoration: "none", color: "teal.400" }}
-                fontWeight="semibold"
-                color="gray.600"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleAnchorClick(item.path);
-                }}
-              >
-                {item.label}
-              </ChakraLink>
-            ) : (
-              <ChakraLink
-                key={item.label}
-                as={RouterLink}
-                to={item.path}
-                _hover={{ textDecoration: "none", color: "teal.400" }}
-                fontWeight="semibold"
-                color="gray.600"
-              >
-                {item.label}
-              </ChakraLink>
-            )
-          )}
-
-          {/* Join Waitlist Button */}
-          <Button
-            colorScheme="green"
-            rounded="full"
-            px={5}
-            py={2}
-            ml={4}
-            _hover={{ bg: "green.600" }}
-            onClick={() => alert("Redirect to waitlist page or modal")}
-          >
-            Join Waitlist
-          </Button>
-        </Flex>
-
-        {/* Mobile Menu Icon */}
-        {!isOpen && (
-          <Box
-            display={{ base: "block", md: "none" }}
-            position="absolute"
-            top={1}
-            right={4}
-            zIndex={20}
-            cursor="pointer"
-            w="2em"
-            h="3em"
-          >
-            <Image
-              src="menu.png"
-              alt="Menu"
-              onClick={toggleDropdown}
-              w="100%"
-              h="100%"
-              objectFit="contain"
-            />
-          </Box>
-        )}
-      </Flex>
-
-      {/* Mobile Dropdown Menu */}
-      {isOpen && (
-        <MotionBox
-          position="absolute"
-          top={0}
-          left={0}
-          right={0}
-          zIndex={15}
-          bg="white"
-          shadow="lg"
-          initial={{ y: "-100%" }}
-          animate={{ y: 0 }}
-          exit={{ y: "-100%" }}
-          transition={{ type: "spring", stiffness: 100, damping: 20 }}
-          px={4}
-          py={6}
-          color="black"
-        >
-          <Flex justify="space-between" mb={6} align="center">
-            <Box w="9em">
-              <Image src="ahiaoma_text_logo.png" alt="Logo" />
-            </Box>
-            <Box cursor="pointer" onClick={toggleDropdown}>
-              <FiX size={24} />
-            </Box>
-          </Flex>
-
-          <Flex direction="column" gap={4}>
-            {navItems.map((item) =>
-              item.path.startsWith("#") ? (
-                <ChakraLink
-                  key={item.label}
-                  href={item.path}
-                  _hover={{ textDecoration: "none", color: "teal.400" }}
-                  fontWeight="semibold"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    toggleDropdown();
-                    handleAnchorClick(item.path);
-                  }}
-                >
-                  {item.label}
-                </ChakraLink>
-              ) : (
-                <ChakraLink
-                  key={item.label}
-                  as={RouterLink}
-                  to={item.path}
-                  _hover={{ textDecoration: "none", color: "teal.400" }}
-                  fontWeight="semibold"
-                  onClick={toggleDropdown}
-                >
-                  {item.label}
-                </ChakraLink>
-              )
-            )}
-
-            {/* Join Waitlist button in mobile menu */}
+          {/* Desktop Navigation */}
+          <HStack spacing={8} display={{ base: "none", md: "flex" }}>
+         {navLinks.map((link) => (
+  <Link
+    key={link.path}
+    as={RouterLink}
+    to={link.path}
+    color={isActive(link.path) ? "green.600" : "gray.700"}
+    fontWeight={isActive(link.path) ? "700" : "500"}
+    borderBottom={isActive(link.path) ? "2px solid" : "none"}
+    borderColor="green.600"
+    pb={isActive(link.path) ? "1px" : "0"}
+    _hover={{ color: "green.600", textDecoration: "none" }}
+    transition="color 0.2s"
+  >
+    {link.name}
+  </Link>
+))}          </HStack>
+          {/* Download App + Hamburger */}
+          <Flex alignItems="center" gap={3}>
             <Button
+              as="a"
+              href="/download"
               colorScheme="green"
               rounded="full"
-              px={5}
-              py={2}
-              mt={2}
-              _hover={{ bg: "green.600" }}
-              onClick={() => {
-                toggleDropdown();
-                alert("Redirect to waitlist page or modal");
-              }}
+              px={6}
+              size="md"
+              fontWeight="semibold"
+              display={{ base: "none", md: "flex" }}
             >
-              Join Waitlist
+              Download App
             </Button>
+
+            {/* Hide hamburger when menu is open */}
+            {!isOpen && (
+              <IconButton
+                size="md"
+                icon={<HamburgerIcon />}
+                aria-label="Open Menu"
+                display={{ md: "none" }}
+                onClick={onToggle}
+                bg="transparent"
+                color="gray.700"
+                _hover={{ bg: "gray.100" }}
+              />
+            )}
           </Flex>
-        </MotionBox>
-      )}
+        </Flex>
+
+{/* ==================== MOBILE MENU ==================== */}
+<Collapse in={isOpen} animateOpacity>
+  <Box
+  position="absolute"
+  top="0"
+  left={0}
+  right={0}
+  bg="linear-gradient(to bottom, #f5f5f5, #b8bcc8)"
+  zIndex={60}
+  display={{ md: "none" }}
+  overflow="hidden"
+  boxShadow="lg"
+  borderRadius="0 0 20px 20px"
+>
+    {/* TOP HEADER */}
+    <Flex
+      h={16}
+      alignItems="center"
+      justifyContent="space-between"
+      px={4}
+      borderBottom="1px solid"
+      borderColor="gray.300"
+    >
+      {/* Logo */}
+      <Image
+        src="ahiaoma_text_logo.png"
+        alt="Ahiaoma Logo"
+        maxW="160px"
+        objectFit="contain"
+      />
+
+      {/* Close Button */}
+      <IconButton
+        icon={<CloseIcon boxSize={3} />}
+        aria-label="Close Menu"
+        onClick={onClose}
+        variant="ghost"
+        color="gray.600"
+        _hover={{ bg: "transparent" }}
+        _active={{ bg: "transparent" }}
+      />
+    </Flex>
+
+    {/* MENU LINKS */}
+    <VStack
+      align="stretch"
+      spacing={0}
+      px={5}
+      py={6}
+    >
+     {navLinks.map((link) => (
+  <Link
+    key={link.path}
+    as={RouterLink}
+    to={link.path}
+    onClick={onClose}
+    py={3}
+    fontSize="lg"
+    fontWeight="bold"
+    color={isActive(link.path) ? "green.200" : "white"}
+    borderLeft={isActive(link.path) ? "3px solid" : "none"}
+    borderColor="green.300"
+    pl={isActive(link.path) ? 3 : 0}
+    _hover={{
+      textDecoration: "none",
+      color: "green.100",
+    }}
+  >
+    {link.name}
+  </Link>
+))}
+
+      {/* Download App */}
+      <Link
+        py={3}
+        fontSize="lg"
+        fontWeight="bold"
+        color="white"
+        _hover={{
+          textDecoration: "none",
+          color: "green.100",
+        }}
+      >
+        Download App
+      </Link>
+    </VStack>
+  </Box>
+</Collapse>
+      </Container>
     </Box>
   );
-};
+}
 
 export default Header;

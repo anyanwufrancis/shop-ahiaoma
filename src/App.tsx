@@ -1,9 +1,9 @@
 import { Flex, Image } from "@chakra-ui/react";
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
-
+import DownloadPage from "./Components/download";
 import Home from "./Components/Home";
-import About from "./Components/about/About";
+import About from "./Components/About";
 import Contact from "./Components/Contact";
 import { Work } from "./Components/work";
 
@@ -30,6 +30,7 @@ function AppContent() {
         <Route path="/work" element={<Work />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/download" element={<DownloadPage />} />
       </Routes>
     </>
   );

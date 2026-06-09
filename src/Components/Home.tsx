@@ -1,601 +1,650 @@
 "use client";
+
 import {
   Box,
   Flex,
   Image,
   Button,
   Text,
-  Icon,
   Heading,
   Grid,
-  HStack,
-
+  Icon,
+  VStack,
+  Circle, // ← added this line
 } from "@chakra-ui/react";
-import { PiStarFourFill } from "react-icons/pi";
-import { IoCheckmarkSharp } from "react-icons/io5";
-import { motion } from "framer-motion";
-import { FaStar, FaQuoteLeft } from "react-icons/fa6";
+
 import { keyframes } from "@emotion/react";
+
+// import { FaStar, FaQuoteLeft } from "react-icons/fa6";
+import { motion } from "framer-motion";
 import { MdOutlineShield } from "react-icons/md";
 import { HiMiniShoppingBag } from "react-icons/hi2";
-import { FaTruck,  } from "react-icons/fa6";
-import { IoEllipseSharp } from "react-icons/io5";
-import { IoRocketSharp } from "react-icons/io5";
-import { IoIosArrowRoundForward } from "react-icons/io";
-import { BiSolidMessageRounded } from "react-icons/bi";
-import { useState } from "react";
-// import { FiX } from "react-icons/fi"; // Import X icon for close
+import { FaTruck } from "react-icons/fa6";
+import { PiStarFourFill } from "react-icons/pi";
+// import { BiSolidMessageRounded } from "react-icons/bi";
+
+import { DownloadIcon } from "@chakra-ui/icons";
+
 import Header from "./shared/header";
 import Footer from "./shared/footer";
+import { BsCheck, BsTruck } from "react-icons/bs";
+import Cookies from "./cookies";
+// import { title } from "framer-motion/m";
 
 const MotionBox = motion(Box);
-const MotionIcon = motion(Icon);
+const scroll = keyframes`
+0% {transform:translateX(0);}
+100% {transform:translateX(-50%)}`;
 
-const slowSpin = keyframes`
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-`;
+// const containerVariants = {
+//   hidden: { opacity: 0 },
+//   visible: {
+//     opacity: 1,
+//     transition: { staggerChildren: 0.3 },
+//   },
+// };
 
-// Variants for container and items for staggered animation
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.3,
-    },
+// const itemVariants = {
+//   hidden: { opacity: 0, y: 20 },
+//   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+// };
+
+const products = [
+  {
+    image: "/product1.jpg",
+    title: "Fresh Tomatoes",
+    price: "₦2,500",
   },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
+  {
+    image: "/product2.jpg",
+    title: "Organic Lettuce",
+    price: "₦1,200",
+  },
+  {
+    image: "/product3.jpg",
+    title: "Carrots Bundle",
+    price: "₦1,800",
+  },
+  {
+    image: "/product4.jpg",
+    title: "Eggplant Pack",
+    price: "₦1,800",
+  },
+  {
+    image: "/product5.jpg",
+    title: "Fresh Avocados",
+    price: "₦3,500",
+  },
+  {
+    image: "/product6.jpg",
+    title: "Green And Red Pepper Pack",
+    price: "₦2,200",
+  },
+  {
+    image: "/product7.jpg",
+    title: "Cabbage Head",
+    price: "₦1,500",
+  },
+  {
+    image: "/product8.jpg",
+    title: "Spinach Bunch",
+    price: "₦1,200",
+  },
+  {
+    image: "/product9.jpg",
+    title: "Onions Bag",
+    price: "₦2,800",
+  },
+  {
+    image: "/product10.jpg",
+    title: "Cucumber Pack",
+    price: "₦1,700",
+  },
+  {
+    image: "/product11.jpg",
+    title: "Sweet Corn",
+    price: "₦2,400",
+  },
+  {
+    image: "/product12.jpg",
+    title: "Okra Bowl",
+    price: "₦1,600",
+  },
+];
+const steps = [
+  {
+    id: 1,
+    title: "Download App",
+    desc: "Available on IOS and Andriod",
+  },
+  {
+    id: 2,
+    title: "Browse & Order",
+    desc: "Select Fresh Produce directly from farms",
+  },
+  {
+    id: 3,
+    title: "Swift Delivery",
+    desc: "recieve your order with in 24 hours ",
+  },
+];
 
 const Home = () => {
-  // const [isOpen, setIsOpen] = useState(false);
-
-  // const toggleDropdown = () => {
-  //   setIsOpen(!isOpen);
-  // };
- // State hooks for each card hover
-  const [hoverCard1, setHoverCard1] = useState(false);
-  const [hoverCard2, setHoverCard2] = useState(false);
-  const [hoverCard3, setHoverCard3] = useState(false);
-
-  // Background colors for arrows matching each card
-  const arrowBgColors = ["#4CAF50", "#2196F3", "#9C27B0"]; // Green, Blue, Purple
   return (
     <>
-     <MotionBox
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-    >
-      {/* Global style for smooth scroll */}
-      <Box ml={{ base: "0", md: "0.3em" }} overflowX={"hidden"}>
-       <Box id="header-nav">
-
-         <Header />
-</Box>
+      {/* <MotionBox
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      > */}
+      <Box ml={{ base: "0", md: "0.3em" }} overflowX="hidden">
+        {/* HEADER */}
+        <Box id="header-nav">
+          <Header />
+        </Box>
 
         {/* HERO SECTION */}
-        <MotionBox variants={itemVariants}>
+        {/* <MotionBox variants={itemVariants}> */}
         <Flex
-          gap={{ base: 10, md: 20 }}
+          gap={{ base: 10, md: 16 }}
           direction={{ base: "column", md: "row" }}
           textAlign={{ base: "center", md: "left" }}
-          bg="linear-gradient(to top right, #effdffff, #ffffff)"
+          bg="gray.50"
           py={{ base: 12, md: 20 }}
           px={{ base: 6, md: 10 }}
-          position="relative"
+          align="center"
         >
-          {/* Left Section */}
+          {/* LEFT */}
           <Box flex="1">
-            <Box position="relative" display="inline-block" mb={4}>
-              <HStack
-                gap={2}
-                bg="green.100"
-                color="green.700"
-                px={3}
-                mt={"-2em"}
-                py={1.5}
-                w={"15em"}
-                borderRadius="full"
-                alignItems="center"
-                mb={"5em"}
-              >
-                <Icon as={IoRocketSharp} color="red.400" boxSize={3} />
-                <Text fontSize="sm" fontWeight="semibold">
-                  🇳🇬 Nigeria’s #1 Marketplace
-                </Text>
-              </HStack>
-
-              <MotionBox mt={"-5em"}>
-                <MotionIcon
-                  as={IoEllipseSharp}
-                  color="green.400"
-                  boxSize={4}
-                  ml={"2em"}
-                  transform="translateX(-50%)"
-                  animate={{ y: [0, -15, 0] }}
-                  transition={{
-                    duration: 1.5,
-                    ease: "easeInOut",
-                    repeat: Infinity,
-                  }}
-                />
-              </MotionBox>
-
-              <Heading
-                fontSize={{ base: "4xl", md: "7xl" }}
-                fontWeight="bolder"
-                color="black"
-                mt={"-0.1em"}
-                w={{ base: "100%", md: "7em" }}
-                lineHeight="short"
-              >
-                Shop Smarter with
-                <Box as="span" color="green.500">
-                  Ahiaoma
-                </Box>
-              </Heading>
-            </Box>
-
-            <Text
-              mt={4}
-              fontSize={{ base: "md", md: "2xl" }}
-              color="gray.700"
-              w={{ base: "100%", md: "25em" }}
-              mx={{ base: "auto", md: "0" }}
+            <Heading
+              fontSize={{ base: "4xl", md: "6xl" }}
+              fontWeight="bold"
+              lineHeight="short"
+              color="gray.800"
             >
-              Experience the future of online shopping in Nigeria. Secure, fast,
-              and reliable connecting buyers and sellers nationwide.
+              Fresh Farm Produce,
+              <Box as="span" color="green.500">
+                {" "}
+                Straight to Your Door
+              </Box>
+            </Heading>
+
+            <Text mt={5} fontSize={{ base: "md", md: "2xl" }} color="gray.600">
+              Connecting verified farmers and food producers directly to urban
+              buyers.
             </Text>
 
-            {/* Buttons Section */}
-            <Flex
-              mt={6}
-              gap={4}
-              flexDirection={{ base: "column", sm: "row" }}
-              justify={{ base: "center", md: "flex-start" }}
-              align="center"
-              flexWrap="wrap"
-            >
-              <Box w={{ base: "8em", sm: "8em" }} ml={{ base: "-15em", md: "-1em" }}>
-                <Image src="Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" />
-              </Box>
-              <Box w={{ base: "8em", sm: "8em" }} ml={{ base: "-15em", md: "-1em" }}>
-                <Image src="google_playstore_images/GetItOnGooglePlay_Badge_Web_color_English.png" />
-              </Box>
+            {/* COUNTDOWN */}
+            <Flex gap={10} mt={10}>
+              {[
+                { value: "08", label: "DAYS" },
+                { value: "07", label: "HOURS" },
+                { value: "15", label: "MINUTES" },
+                { value: "49", label: "SECONDS" },
+              ].map((item, i) => (
+                <Box key={i} textAlign="center">
+                  <Text fontSize="3xl" fontWeight="bold" color="green.600">
+                    {item.value}
+                  </Text>
+                  <Text fontSize="sm" color="gray.500">
+                    {item.label}
+                  </Text>
+                </Box>
+              ))}
+            </Flex>
+
+            {/* BUTTONS */}
+            <Flex mt={10} gap={4}>
+              <Button
+                bg="green.500"
+                color="white"
+                px={6}
+                py={6}
+                rounded="lg"
+                _hover={{ bg: "green.600" }}
+              >
+                Get Notified
+              </Button>
 
               <Button
-                colorScheme="green"
-                rounded="1em"
-                px={5}
-                py={3}
-                h={"4em"}
-                w={{ base: "100%", sm: "auto" }}
-                _hover={{ bg: "green.700" }}
+                leftIcon={<DownloadIcon />}
+                bg="gray.900"
+                color="white"
+                px={6}
+                py={6}
+                rounded="lg"
+                _hover={{ bg: "black" }}
               >
-                Learn More
-                <Box ml={2}>
-                  <IoIosArrowRoundForward size={20} color="white" />
-                </Box>
+                Download App
               </Button>
             </Flex>
-
-            {/* Stats Section */}
-            <Flex
-              gap={{ base: "2em", md: "3em" }}
-              textAlign="center"
-              mt={10}
-              direction={{ base: "row", md: "row" }}
-              alignItems="center"
-              justifyContent={{ base: "center", md: "flex-start" }}
-            >
-              <Box>
-                <Text fontSize="xl" fontWeight="bold">
-                  50K+
-                </Text>
-                <Text w={{ base: "100%", md: "9em" }}>Happy Users</Text>
-              </Box>
-              <Box>
-                <Text fontSize="xl" fontWeight="bold">
-                  10K+
-                </Text>
-                <Text>Products</Text>
-              </Box>
-              <Box>
-                <Text fontSize="xl" fontWeight="bold">
-                  99%
-                </Text>
-                <Text>Satisfaction</Text>
-              </Box>
-            </Flex>
-            <MotionBox mt={"-5em"}>
-              <MotionIcon
-                as={IoEllipseSharp}
-                color="blue.400"
-                ml={{ base: "100%", md: "5em" }}
-                transform="translateX(-50%)"
-                animate={{ y: [0, -15, 0] }}
-                transition={{
-                  duration: 1.5,
-                  ease: "easeInOut",
-                  repeat: Infinity,
-                }}
-              />
-            </MotionBox>
           </Box>
 
-          {/* Right Section */}
-          <Box
-            position="relative"
-            mt={{ base: "5em", md: "8em" }}
-          >
+          {/* RIGHT IMAGE */}
+          <Box flex="1" display="flex" justifyContent="center">
             <MotionBox
-              rounded="1em"
+              position="relative" // مهم
+              rounded="lg"
               overflow="hidden"
               w={{ base: "100%", md: "26em" }}
-              h={{ base: "13em", md: "21em" }}
-              mx={{ base: "auto", md: 0 }}
+              h={{ base: "18em", md: "28em" }}
               animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 2, ease: "easeInOut", repeat: Infinity }}
+              transition={{ duration: 3, repeat: Infinity }}
             >
+              {/* Image */}
               <Image
-                src="countryside-woman-holding-plant-leaves.jpg"
-                alt="Shopping"
+                src="/countryside-woman-holding-plant-leaves.jpg"
+                alt="Farmer"
                 w="100%"
                 h="100%"
                 objectFit="cover"
               />
-            </MotionBox>
 
-            {/* Floating Star */}
-            <Box
-              bg="green.500"
-              p="0.9em"
-              position="absolute"
-              top={{ base: "-1em", md: "-1em" }}
-              right={{ base: "-1em", md: "-1em" }}
-              w="3em"
-              h="3em"
-              rounded="md"
-              animation={`${slowSpin} 25s linear infinite`}
-              boxShadow="0 0 20px rgba(72,187,120,0.5)"
-            >
-              <FaStar size="1.2em" color="white" />
-            </Box>
-
-            {/* Floating Checkmark */}
-            <MotionBox
-              position="absolute"
-              left="-0.6em"
-              top={{ base: "10em", md: "19em" }}
-              mx={{ base: "auto", md: 0 }}
-              borderRadius="full"
-              display="inline-flex"
-              alignItems="center"
-              justifyContent="center"
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{
-                duration: 1.5,
-                ease: "easeInOut",
-                repeat: Infinity,
-              }}
-            >
+              {/* Fast Delivery Badge (Top Left) */}
               <Box
-                bg="#7b2ff5"
-                p="14px"
-                borderRadius="full"
+                position="absolute"
+                top="0"
+                left="0"
+                bg="white"
+                px="4"
+                blur={"base"}
+                py="2"
+                rounded="12px"
+                shadow="md"
                 display="flex"
                 alignItems="center"
-                justifyContent="center"
+                gap="2"
               >
-                <IoCheckmarkSharp size="22px" color="white" />
+                <BsTruck />
+                <Box fontSize="sm">
+                  <Box fontWeight="bold">Fast Delivery</Box>
+                  <Box fontSize="xs" color="gray.500">
+                    WITHIN 24 HOURS
+                  </Box>
+                </Box>
+              </Box>
+
+              {/* Verified Quality Badge (Bottom Right) */}
+              <Box
+                position="absolute"
+                bottom="0"
+                right="0"
+                bg="white"
+                px="4"
+                py="2"
+                rounded="12px"
+                shadow="md"
+                display="flex"
+                alignItems="center"
+                gap="2"
+              >
+                <BsCheck />
+                <Box fontSize="sm">
+                  <Box fontWeight="bold">Verified Quality</Box>
+                  <Box fontSize="xs" color="gray.500">
+                    100% ORGANIC
+                  </Box>
+                </Box>
               </Box>
             </MotionBox>
           </Box>
         </Flex>
-        </MotionBox>
-       </Box>
-        {/* Power Features Section */}
-        <MotionBox variants={itemVariants}>
-        <Box id="powerful-features" textAlign="center" mt={"4em"}>
+        <Cookies/>
+        {/* </MotionBox> */}
+
+        {/* TRENDING PRODUCTS TITLE */}
+        {/* <MotionBox variants={itemVariants}> */}
+        <Box textAlign="center" mt="5em">
           <Flex
-            textAlign="center"
-            maxW="1200px"
             mx="auto"
-            gap={"0.2em"}
-            color="green"
-            px={"0.3em"}
-            align={"center"}
-            py={"0.3em"}
-            backgroundColor={"#effdffff"}
-            width={"12em"}
-            marginX="auto"
+            gap="0.4em"
+            align="center"
+            justify="center"
+            color="green.500"
+            fontWeight="600"
           >
-            <Box>
-              <PiStarFourFill color="gold" />
-            </Box>
-            <Text rounded={"2em"} fontSize="md" fontWeight={"600"}>
-              Why Choose Ahiaoma
-            </Text>
+            <Box w="40px" h="3px" bg="green.500" />
+            <Text>OUR TRENDING PRODUCTS</Text>
+            <Box w="40px" h="3px" bg="green.500" />
           </Flex>
-          <Heading fontSize={{ base: "6xl", md: "5xl" }} color="gray.600">
-            Powerful Features
-          </Heading>
-          <Text fontSize={"2xl"} color="gray.400" mt={2}>
-            Everything you need for a seamless shopping experience
+        </Box>
+        {/* </MotionBox> */}
+
+        {/* TRENDING PRODUCTS - HORIZONTAL AUTO SCROLLING */}
+        {/* <MotionBox variants={itemVariants}> */}
+        <Box py={12} px={{ base: 4, md: 10 }} bg="white" overflow="hidden">
+          <VStack spacing={6} mb={8} textAlign="center">
+            <Text
+              fontSize="lg"
+              fontWeight="semibold"
+              color="green.600"
+              letterSpacing="wide"
+              textTransform="uppercase"
+            >
+              FRESH FROM THE FARM
+            </Text>
+            {/* <Heading
+              fontSize={{ base: "3xl", md: "4xl" }}
+              fontWeight="bold"
+              color="gray.800"
+            >
+              Trending This Week
+            </Heading> */}
+          </VStack>
+
+          {/* Auto Scrolling Horizontal Marquee */}
+          <Box position="relative" overflow="hidden" py={4}>
+            <Flex
+              gap={6}
+              animation={`${scroll} 30s linear infinite`}
+              whiteSpace="nowrap"
+              _hover={{ animationPlayState: "paused" }}
+            >
+              {[...products, ...products].map((product, i) => (
+                <Box
+                  key={i}
+                  minW={{ base: "260px", md: "280px" }}
+                  bg="white"
+                  borderRadius="12px"
+                  overflow="hidden"
+                  boxShadow="md"
+                  border="1px solid #eee"
+                  _hover={{ transform: "scale(1.03)", shadow: "xl" }}
+                  transition="0.3s"
+                >
+                  <Image
+                    src={product.image}
+                    alt={product.title}
+                    h="180px"
+                    w="100%"
+                    objectFit="cover"
+                  />
+                  <Box p={4}>
+                    <Text
+                      fontSize="xs"
+                      color="green.600"
+                      fontWeight="semibold"
+                      textTransform="uppercase"
+                      mb={1}
+                    >
+                      FRESH FROM FARM
+                    </Text>
+                    <Text fontWeight="medium" mb={3} noOfLines={2}>
+                      {product.title}
+                    </Text>
+
+                    <Flex justify="space-between" align="center">
+                      <Text fontSize="xl" fontWeight="bold" color="green.600">
+                        {product.price}
+                      </Text>
+                      <Button
+                        size="sm"
+                        colorScheme="green"
+                        variant="outline"
+                        _hover={{ bg: "green.50" }}
+                      >
+                        View Details
+                      </Button>
+                    </Flex>
+                  </Box>
+                </Box>
+              ))}
+            </Flex>
+          </Box>
+          <Text textAlign="center" fontSize="sm" color="gray.500" mt={6}>
+            Scroll left or hover to pause • Fresh produce updated daily
           </Text>
         </Box>
-        </MotionBox>
-
-        {/* Features cards */}
-        <MotionBox variants={itemVariants}>
-        <Grid
-      mt={10}
-      gap={6}
-      gridTemplateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }}
-      px={{ base: 4, md: 10 }}
-    >
-      {/* Card 1 */}
-      <Box
-        bg="white"
-        borderRadius="1em"
-        boxShadow="lg"
-        p="20px"
-        _hover={{ transform: "scale(1.05)", bg: "#f0fff0" }}
-        transition="transform 0.2s, background-color 0.2s"
-        onMouseEnter={() => setHoverCard1(true)}
-        onMouseLeave={() => setHoverCard1(false)}
-        position="relative"
-      >
-        <Box
-          mb="10px"
-          backgroundColor={"#4CAF50"}
-          w={"2em"}
-          shadow={"md"}
-          rounded={"0.4em"}
-          py={"0.4em"}
-          px={"0.5em"}
-          color="white"
-          fontSize="30px"
-        >
-          <MdOutlineShield />
-        </Box>
-        <Text fontWeight="bold" fontSize="1.9em" mb="4px">
-          Secure Payment
-        </Text>
-        <Text fontSize="2xl" fontWeight={"normal"} color="gray.600">
-          Bank-level encryption and fraud protection for every transaction
-        </Text>
-        {/* Show arrow on hover */}
-        {hoverCard1 && (
-          <Box
-            position="absolute"
-            top="90%"
-            right="1em"
-            transform="translateY(-50%)"
-            bg={arrowBgColors[0]}
-            p={2}
-            borderRadius="full"
-            boxShadow="lg"
-            cursor="pointer"
-            transition="background-color 0.2s"
-            _hover={{ bg: "green.600" }}
-          >
-            <IoIosArrowRoundForward size={20} color="white" />
-          </Box>
-        )}
-      </Box>
-
-      {/* Card 2 */}
-      <Box
-        bg="white"
-        borderRadius="1em"
-        boxShadow="lg"
-        p="20px"
-        _hover={{ transform: "scale(1.05)", bg: "#e0f7fa" }}
-        transition="transform 0.2s, background-color 0.2s"
-        onMouseEnter={() => setHoverCard2(true)}
-        onMouseLeave={() => setHoverCard2(false)}
-        position="relative"
-      >
-        <Box
-          mb="10px"
-          backgroundColor={"#2196F3"}
-          w={"2em"}
-          shadow={"md"}
-          rounded={"0.4em"}
-          py={"0.4em"}
-          px={"0.5em"}
-          color="white"
-          fontSize="30px"
-        >
-          <HiMiniShoppingBag />
-        </Box>
-        <Text fontWeight="bold" fontSize="1.9em" mb="4px">
-          Wide Selection
-        </Text>
-        <Text fontSize="2xl" color="gray.600">
-          Millions of products from verified sellers across Nigeria
-        </Text>
-        {/* Show arrow on hover */}
-        {hoverCard2 && (
-          <Box
-            position="absolute"
-            top="90%"
-            right="1em"
-            transform="translateY(-50%)"
-            bg={arrowBgColors[1]}
-            p={2}
-            borderRadius="full"
-            boxShadow="lg"
-            cursor="pointer"
-            transition="background-color 0.2s"
-            _hover={{ bg: "blue.600" }}
-          >
-            <IoIosArrowRoundForward size={20} color="white" />
-          </Box>
-        )}
-      </Box>
-
-      {/* Card 3 */}
-      <Box
-        bg="white"
-        borderRadius="1em"
-        boxShadow="lg"
-        p="20px"
-        _hover={{ transform: "scale(1.05)", bg: "#f3e5f5" }}
-        transition="transform 0.2s, background-color 0.2s"
-        onMouseEnter={() => setHoverCard3(true)}
-        onMouseLeave={() => setHoverCard3(false)}
-        position="relative"
-      >
-        <Box
-          mb="10px"
-          backgroundColor={"#9C27B0"}
-          w={"2em"}
-          shadow={"md"}
-          rounded={"0.4em"}
-          py={"0.4em"}
-          px={"0.5em"}
-          color="white"
-          fontSize="30px"
-        >
-          <FaTruck />
-        </Box>
-        <Text fontWeight="bold" fontSize="1.9em" mb="4px">
-          Fast Delivery
-        </Text>
-        <Text fontSize="2xl" color="gray.600">
-          Same-day delivery in major cities, nationwide coverage
-        </Text>
-        {/* Show arrow on hover */}
-        {hoverCard3 && (
-          <Box
-            position="absolute"
-            top="90%"
-            right="1em"
-            transform="translateY(-50%)"
-            bg={arrowBgColors[2]}
-            p={2}
-            borderRadius="full"
-            boxShadow="lg"
-            cursor="pointer"
-            transition="background-color 0.2s"
-            _hover={{ bg: "purple.600" }}
-          >
-            <IoIosArrowRoundForward size={20} color="white" />
-          </Box>
-        )}
-      </Box>
-    </Grid>
-        </MotionBox>
-
-        {/* Testimonials Section */}
-        <MotionBox variants={itemVariants}>
-        <Box
-          bg="linear-gradient(to top right, #effdffff, #ffffff)"
-          p={10}
-          mt={"5em"}
+        {/* </MotionBox> */}
+        {/* WHY AHIAOMA SECTION */}
+        <MotionBox
+          // variants={itemVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          py={{ base: 16, md: 20 }}
+          px={{ base: 6, md: 10, lg: 16 }}
+          bg="gray.50"
+          textAlign="center"
         >
           <Flex
-            textAlign="center"
+            direction="column"
+            align="center"
             maxW="1200px"
             mx="auto"
-            gap={"0.3em"}
-            color="green"
-            px={"0.3em"}
-            align={"center"}
-            rounded={"2em"}
-            py={"0.3em"}
-            backgroundColor={"#c7f2f8ff"}
-            width={"10em"}
-            // mx="auto"
+            mb={12}
           >
-            <Box>
-              <BiSolidMessageRounded color="white" />
-            </Box>
-            <Text fontSize="md" fontWeight={"600"}>
-              Customer Stories{" "}
+            <Flex
+              align="center"
+              gap={2}
+              bg="green.50"
+              color="green.600"
+              px={5}
+              py={2}
+              rounded="full"
+              fontWeight="semibold"
+              fontSize="sm"
+              mb={4}
+            >
+              <PiStarFourFill />
+              <Text>WHY AHIAOMA?</Text>
+            </Flex>
+
+            <Heading
+              fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }}
+              fontWeight="bold"
+              color="gray.800"
+              mb={4}
+            >
+              Built for Freshness & Trust
+            </Heading>
+
+            <Text
+              fontSize={{ base: "lg", md: "xl" }}
+              color="gray.600"
+              maxW="3xl"
+              mx="auto"
+            >
+              We leverage technology to bridge the gap between farm and table,
+              ensuring quality and speed at every step.
             </Text>
           </Flex>
-          <Heading
-            fontSize={{ base: "2xl", md: "6xl" }}
-            color="gray.600"
-            textAlign="center"
-          >
-            Loved by Thousands
-          </Heading>
-          <Text fontSize={"2xl"} color="gray.400" textAlign="center" mb={10}>
-            See what our community has to say about their experience
-          </Text>
 
           <Grid
-            mt={"5em"}
-            gap={10}
-            justifyContent="center"
-            gridTemplateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }}
-            placeItems="center"
+            templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }}
+            gap={{ base: 8, lg: 12 }}
+            maxW="1200px"
+            mx="auto"
           >
-            {[
-              `"Ahiaoma transformed my business! The platform is intuitive and my sales have tripled."`,
-              `"Fast delivery, secure payments, and amazing customer support. Best rising marketplace in Nigeria!"`,
-              `"I found exactly what I needed at great prices. The shopping experience is seamless."`,
-            ].map((quote, index) => (
-              <Box
-                key={index}
-                position="relative"
-                w={{ base: "100%", md: "22em" }}
+            {/* Card 1 */}
+            <Box
+              bg="white"
+              rounded="2xl"
+              p={{ base: 8, lg: 10 }}
+              shadow="md"
+              transition="all 0.3s ease"
+              _hover={{ transform: "translateY(-8px)", shadow: "xl" }}
+              textAlign="center"
+              position="relative"
+              overflow="hidden"
+            >
+              <Flex
+                mx="auto"
+                w={20}
+                h={20}
+                bg="green.50"
+                rounded="full"
+                align="center"
+                justify="center"
+                mb={6}
               >
-                <Box
-                  position="absolute"
-                  top="-0.5em"
-                  left="-1em"
-                  bg="green.500"
-                  color="white"
-                  rounded="full"
-                  p="1em"
-                  boxShadow="lg"
-                  zIndex={3}
-                >
-                  <FaQuoteLeft />
-                </Box>
+                <Icon as={MdOutlineShield} boxSize={10} color="green.600" />
+              </Flex>
 
-                <Box
-                  backgroundColor="white"
-                  p={10}
-                  borderRadius={10}
-                  mt="1.5em"
-                  _hover={{ transform: "scale(1.05)", bg: "#e0f7fa" }}
-                  transition="transform 0.2s, background-color 0.2s"
-                  boxShadow="md"
-                  shadow={"dark-lg"}
-                  textAlign="left"
-                >
-                  <Flex gap={2} mb={3}>
-                    {Array(5)
-                      .fill("")
-                      .map((_, i) => (
-                        <FaStar key={i} color="gold" />
-                      ))}
-                  </Flex>
-                  <Text fontStyle="italic" color="gray.700">
-                    {quote}
-                  </Text>
-                </Box>
-              </Box>
-            ))}
+              <Heading
+                as="h3"
+                fontSize={{ base: "xl", md: "2xl" }}
+                fontWeight="bold"
+                mb={4}
+                color="gray.800"
+              >
+                Safe & Secure
+              </Heading>
+
+              <Text fontSize="md" color="gray.600">
+                Verified farmers and encrypted payments ensure every transaction
+                is protected.
+              </Text>
+            </Box>
+
+            {/* Card 2 */}
+            <Box
+              bg="white"
+              rounded="2xl"
+              p={{ base: 8, lg: 10 }}
+              shadow="md"
+              transition="all 0.3s ease"
+              _hover={{ transform: "translateY(-8px)", shadow: "xl" }}
+              textAlign="center"
+              position="relative"
+              overflow="hidden"
+            >
+              <Flex
+                mx="auto"
+                w={20}
+                h={20}
+                bg="blue.50"
+                rounded="full"
+                align="center"
+                justify="center"
+                mb={6}
+              >
+                <Icon as={HiMiniShoppingBag} boxSize={10} color="blue.600" />
+              </Flex>
+
+              <Heading
+                as="h3"
+                fontSize={{ base: "xl", md: "2xl" }}
+                fontWeight="bold"
+                mb={4}
+                color="gray.800"
+              >
+                Maximum Choice
+              </Heading>
+
+              <Text fontSize="md" color="gray.600">
+                Access a wide variety of seasonal produce directly from
+                Nigeria's rural heartlands.
+              </Text>
+            </Box>
+
+            {/* Card 3 */}
+            <Box
+              bg="white"
+              rounded="2xl"
+              p={{ base: 8, lg: 10 }}
+              shadow="md"
+              transition="all 0.3s ease"
+              _hover={{ transform: "translateY(-8px)", shadow: "xl" }}
+              textAlign="center"
+              position="relative"
+              overflow="hidden"
+            >
+              <Flex
+                mx="auto"
+                w={20}
+                h={20}
+                bg="purple.50"
+                rounded="full"
+                align="center"
+                justify="center"
+                mb={6}
+              >
+                <Icon as={FaTruck} boxSize={9} color="purple.600" />
+              </Flex>
+
+              <Heading
+                as="h3"
+                fontSize={{ base: "xl", md: "2xl" }}
+                fontWeight="bold"
+                mb={4}
+                color="gray.800"
+              >
+                Swift Delivery
+              </Heading>
+
+              <Text fontSize="md" color="gray.600">
+                Our logistics network ensures your produce stays fresh from
+                harvest to your doorstep.
+              </Text>
+            </Box>
           </Grid>
-        </Box>
         </MotionBox>
-            <Footer />
 
+        {/* TESTIMONIALS */}
+
+        <Box mt={"-1em"} bg={"#0b1c3d"} color={"white"} py={20} px={10}>
+          <Flex
+            justify={"space-between"}
+            align={"flex-start"}
+            position={"relative"}
+            maxW={"1100px"}
+            mx={"auto"}
+          >
+            <Box
+              position={"absolute"}
+              top={"25px"}
+              left={"8%"}
+              right={"8%"}
+              height={"2px"}
+              bg={"gray.600"}
+              zIndex={"0"}
+            />
+            {steps.map((step) => (
+              <VStack key={step.id} spacing={4} zIndex={1}>
+                <Circle
+                  size="50px"
+                  bg="green.400"
+                  color="white"
+                  fontWeight="bold"
+                >
+                  {" "}
+                  {step.id}
+                </Circle>
+                <Text fontWeight={"bold"} fontSize={"lg"}>
+                  {step.title}
+                </Text>
+                <Text
+                  fontSize={"sm"}
+                  color={"gray.300"}
+                  textAlign={"center"}
+                  maxW={"200px"}
+                >
+                  {" "}
+                  {step.desc}
+                </Text>
+              </VStack>
+            ))}
+          </Flex>
+          <Flex justify={"center"} mt={12}>
+            <Button
+              leftIcon={<DownloadIcon />}
+              bg={"white"}
+              color={"black"}
+              px={6}
+              py={5}
+              borderRadius={"lg"}
+              _hover={{ bg: "gray.200" }}
+            >
+              Download Now
+            </Button>
+          </Flex>
+        </Box>
+
+        {/* FOOTER */}
+        <Footer />
       </Box>
-       </MotionBox>
+      {/* </MotionBox> */}
     </>
   );
 };

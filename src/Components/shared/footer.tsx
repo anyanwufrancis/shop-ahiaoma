@@ -1,123 +1,166 @@
-import { Box, Flex, VStack, HStack, Icon, Text } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
-// import React from 'react';
-import { FaPhone } from 'react-icons/fa6';
-import { IoEllipseSharp } from 'react-icons/io5';
-import { MdOutlineEmail } from 'react-icons/md';
+import { Box, Flex, Text, HStack, VStack, Link as ChakraLink } from '@chakra-ui/react';
+import { FaTwitter, FaInstagram, FaFacebookF } from 'react-icons/fa';
+import { MdKeyboardArrowRight } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
+const navigationLinks = [
+  { label: "About Us", path: "/about" },
+  { label: "How It Works", path: "/work" },
+  { label: "Download App", path: "/download" },
+  { label: "Contact", path: "/contact" }
+];
+
 const Footer = () => {
-  const MotionBox = motion(Box);
-
-  // Optional spinning effect (not used in this footer but kept)
-
-
-  // Animation variants
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  };
-
   return (
-    <MotionBox variants={itemVariants} initial="hidden" animate="visible">
-      {/* Main Footer */}
-      <Box bg="#000" color="#fff" p={4} fontFamily="Arial, sans-serif" mt={10}>
+    <Box bg="#0a0a0a" color="white" pt={16} pb={10}>
+      <Flex
+        maxW="1200px"
+        mx="auto"
+        px={6}
+        flexDirection={{ base: "column", lg: "row" }}
+        gap={{ base: 12, lg: 8 }}
+      >
+        {/* Left Section - Logo & Description */}
+        <Box flex="1" maxW={{ lg: "380px" }}>
+          <Text fontSize="3xl" fontWeight="bold" color="#00C853" mb={4}>
+            Ahiaoma
+          </Text>
+          <Text fontSize="md" color="gray.400" lineHeight="tall">
+            Nigeria's premier fresh produce marketplace.
+            <br />
+            Connecting rural heartlands to urban homes with trust and efficiency.
+          </Text>
+
+          {/* Social Icons */}
+          <HStack spacing={4} mt={8}>
+            <Box
+              as="a"
+              href="#"
+              w={10}
+              h={10}
+              bg="whiteAlpha.200"
+              rounded="full"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              _hover={{ bg: "whiteAlpha.300" }}
+            >
+              <FaTwitter size={20} />
+            </Box>
+            <Box
+              as="a"
+              href="#"
+              w={10}
+              h={10}
+              bg="whiteAlpha.200"
+              rounded="full"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              _hover={{ bg: "whiteAlpha.300" }}
+            >
+              <FaInstagram size={20} />
+            </Box>
+            <Box
+              as="a"
+              href="#"
+              w={10}
+              h={10}
+              bg="whiteAlpha.200"
+              rounded="full"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              _hover={{ bg: "whiteAlpha.300" }}
+            >
+              <FaFacebookF size={20} />
+            </Box>
+          </HStack>
+        </Box>
+
+        {/* Navigation */}
+        <Box flex="1">
+          <Text fontWeight="semibold" mb={5} fontSize="sm" letterSpacing="wider" color="gray.400">
+            NAVIGATION
+          </Text>
+          <VStack align="start" spacing={3}>
+            {navigationLinks.map((item) => (
+              <ChakraLink
+                key={item.label}
+                as={Link}
+                to={item.path}
+                color="gray.400"
+                _hover={{ color: "white", textDecoration: "none" }}
+                fontSize="md"
+                display="flex"
+                alignItems="center"
+                gap={2}
+                role="group"
+              >
+                <Box
+                  as={MdKeyboardArrowRight}
+                  transition="transform 0.2s"
+                  _groupHover={{ transform: "translateX(4px)" }}
+                  size={18}
+                />
+                {item.label}
+              </ChakraLink>
+            ))}
+          </VStack>
+        </Box>
+
+        {/* Contact */}
+        <Box flex="1">
+          <Text fontWeight="semibold" mb={5} fontSize="sm" letterSpacing="wider" color="gray.400">
+            CONTACT
+          </Text>
+          <VStack align="start" spacing={5}>
+            <HStack spacing={3}>
+              <Box bg="whiteAlpha.200" p={2.5} rounded="full">
+                ✉️
+              </Box>
+              <Text color="gray.300">support@shopahiaoma.com</Text>
+            </HStack>
+
+            <HStack spacing={3}>
+              <Box bg="whiteAlpha.200" p={2.5} rounded="full">
+                📞
+              </Box>
+              <Text color="gray.300">+234 915 743 5239</Text>
+            </HStack>
+          </VStack>
+        </Box>
+      </Flex>
+
+      {/* Bottom Bar */}
+      <Box borderTop="1px solid" borderColor="whiteAlpha.200" mt={16} pt={8}>
         <Flex
-          flexDirection={{ base: 'column', md: 'row' }}
           maxW="1200px"
           mx="auto"
-          justify={{ base: 'center', md: 'space-between' }}
-          align={{ base: 'start', md: 'center' }}
-          gap={8}
+          px={6}
+          flexDirection={{ base: "column", md: "row" }}
+          justify="space-between"
+          align={{ base: "center", md: "flex-end" }}
+          gap={4}
         >
-          {/* About Section */}
-          <Box minW="200px" mb={{ base: 4, md: 0 }}>
-            <Text fontWeight="bold" fontSize="2xl" color="#00C853">
-              Ahiaoma
-            </Text>
-            <Text mt={2} fontSize="lg" w={{ base: '19em', md: '29em' }} color="gray.400">
-              Nigeria's premier marketplace connecting millions of buyers and sellers. Shop with confidence, sell with ease.
-            </Text>
-          </Box>
+          <Text fontSize="sm" color="gray.500">
+            © 2026 AHIAOMA. ALL RIGHTS RESERVED.
+          </Text>
 
-          {/* Quick Links */}
-          <Box minW="200px" mb={{ base: 4, md: 0 }}>
-            <Text fontWeight="bold" fontSize="lg" mb={4}>
-              Quick Links
+          <HStack spacing={6} fontSize="sm" color="gray.500">
+            <Text cursor="pointer" _hover={{ color: "gray.300" }}>
+              PRIVACY
             </Text>
-            <VStack align="start" gap={2}>
-              <Flex gap="5px" align="center" _hover={{ transform: 'scale(1.05)', color: '#48e985ff' }} transition="transform 0.2s">
-                <IoEllipseSharp size="8px" color="green" />
-                <Link to="/about">
-                  <Text cursor="pointer" color="gray.400" fontSize="lg">About Us</Text>
-                </Link>
-              </Flex>
-              <Flex gap="5px" align="center">
-                <IoEllipseSharp size="8px" color="green" />
-                <Link to="/#powerful-features">
-                  <Text cursor="pointer" color="gray.400" fontSize="lg">How It Works</Text>
-                </Link>
-              </Flex>
-              <Flex gap="5px" align="center">
-                <IoEllipseSharp size="8px" color="green" />
-                <Link to="/#header-nav">
-                  <Text cursor="pointer" color="gray.400" fontSize="lg">Seller Center</Text>
-                </Link>
-              </Flex>
-              <Flex gap="5px" align="center">
-                <IoEllipseSharp size="8px" color="green" />
-                <Link to="/#header-nav">
-                  <Text cursor="pointer" color="gray.400" fontSize="lg">Help Center</Text>
-                </Link>
-              </Flex>
-            </VStack>
-          </Box>
-
-          {/* Contact Section */}
-          <Box minW="200px" mb={{ base: 4, md: 0 }}>
-            <Text fontWeight="bold" fontSize="lg" mb={4}>Contact</Text>
-            <VStack align="start" gap={2}>
-              <HStack align="center" gap={2}>
-                <Box bg="#4CAF50" p={2} borderRadius="md" h="2.2em">
-                  <Icon as={MdOutlineEmail} color="#fff" boxSize={4} />
-                </Box>
-                <Text fontSize="lg" color="gray.400">ahiaoma37@gmail.com</Text>
-              </HStack>
-              <HStack align="center" gap={2}>
-                <Box bg="#2196F3" p={2} borderRadius="md" h="2.2em">
-                  <Icon as={FaPhone} color="#fff" boxSize={4} />
-                </Box>
-                <Text fontSize="lg" color="gray.400">+234 907 940 5147</Text>
-              </HStack>
-            </VStack>
-          </Box>
+            <Text cursor="pointer" _hover={{ color: "gray.300" }}>
+              TERMS
+            </Text>
+            <Text cursor="pointer" _hover={{ color: "gray.300" }}>
+              COOKIES
+            </Text>
+          </HStack>
         </Flex>
-
-        {/* Divider */}
-        <MotionBox variants={itemVariants} initial="hidden" animate="visible">
-          <Box border="1px" borderColor="gray.600" my={4} w="100%" />
-          <Flex
-            flexDirection={{ base: 'column', md: 'row' }}
-            align="center"
-            justify="space-between"
-            mx="auto"
-            px={4}
-            gap={{ base: 2, md: 0 }}
-          >
-            <Text fontSize="sm" ml={{ base: '-1em', md: '-3em' }} w={{ base: '24em', md: '29em' }} textAlign="center">
-              © 2025 Ahiaoma. All rights reserved.
-            </Text>
-
-            {/* Privacy and other links */}
-            <Flex gap={4} justify={{ base: 'center', md: 'flex-end' }} w="100%" mt={{ base: 2, md: 0 }} flexWrap="wrap">
-              <Text cursor="pointer" fontSize="sm">Privacy Policy</Text>
-              <Text cursor="pointer" fontSize="sm">Terms of Service</Text>
-              <Text cursor="pointer" fontSize="sm">Cookies Policy</Text>
-            </Flex>
-          </Flex>
-        </MotionBox>
       </Box>
-    </MotionBox>
+    </Box>
   );
 };
 
