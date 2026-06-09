@@ -77,6 +77,7 @@ const Home = () => {
        <Box id="header-nav">
 
          <Header />
+</Box>
 
         {/* HERO SECTION */}
         <MotionBox variants={itemVariants}>
